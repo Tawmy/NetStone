@@ -66,7 +66,7 @@ public class CharacterGear : LodestoneParseable
     /// <summary>
     /// Information about the characters' facewear. Null if none equipped.
     /// </summary>
-    public GearEntry? Facewear => new GearEntry(this.client, this.RootNode, this.definition.Facewear).GetOptional();
+    public FacewearEntry? Facewear => new FacewearEntry(this.RootNode, this.definition.Facewear).GetOptional();
 
     /// <summary>
     /// Information about the characters' earrings. Null if none equipped.
