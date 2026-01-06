@@ -12,6 +12,12 @@ public class GearEntryDefinition
     /// </summary>
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
+    
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    [JsonProperty("ICON_LINK")]
+    public DefinitionsPack IconLink { get; set; }
 
     /// <summary>
     /// Link to Eorzea Database for item
@@ -90,6 +96,12 @@ public class SoulcrystalEntryDefinition
     /// </summary>
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
+    
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    [JsonProperty("ICON_LINK")]
+    public DefinitionsPack IconLink { get; set; }
 }
 
 /// <summary>

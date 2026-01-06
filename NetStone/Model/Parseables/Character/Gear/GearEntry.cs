@@ -42,6 +42,11 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// Name of this item.
     /// </summary>
     public string ItemName => Parse(this.definition.Name);
+    
+    /// <summary>
+    /// Icon of this item.
+    /// </summary>
+    public Uri? IconLink => ParseImageSource(this.definition.IconLink);
 
     /// <summary>
     /// Indicates if this item is high quality
