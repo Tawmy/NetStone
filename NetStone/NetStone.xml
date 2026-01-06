@@ -748,6 +748,11 @@
             Name of glamour
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.MirageIconLink">
+            <summary>
+            Link to glamour item's icon
+            </summary>
+        </member>
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.MirageDbLink">
             <summary>
             Link to Eorzea Database for glamour item
@@ -2927,6 +2932,11 @@
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.GlamourName">
             <summary>
             Name of the glamoured item.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.GlamourIconLink">
+            <summary>
+            Link to the glamoured item's icon.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Stain">

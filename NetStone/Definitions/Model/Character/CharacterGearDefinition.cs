@@ -32,6 +32,12 @@ public class GearEntryDefinition
     public DefinitionsPack MirageName { get; set; }
 
     /// <summary>
+    /// Link to glamour item's icon
+    /// </summary>
+    [JsonProperty("MIRAGE_ICON_LINK")]
+    public DefinitionsPack MirageIconLink { get; set; }
+
+    /// <summary>
     /// Link to Eorzea Database for glamour item
     /// </summary>
     [JsonProperty("MIRAGE_DB_LINK")]
