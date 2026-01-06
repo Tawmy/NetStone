@@ -25,7 +25,7 @@ public class FacewearEntry : LodestoneParseable, IOptionalParseable<FacewearEntr
     /// <summary>
     /// Name of the item this facewear is unlocked by
     /// </summary>
-    public string? UnlockedBy => ParseAttribute(this.definition.UnlockedBy, "data-tooltip");
+    public string? UnlockedBy => ParseTooltip(this.definition.UnlockedBy);
 
     /// <summary>
     /// Link to this facewear's Eorzea DB page.
