@@ -386,7 +386,8 @@ public class Tests
         
         Assert.IsNotNull(gear.Mainhand.ItemDatabaseLink);
         Assert.IsEmpty(gear.Mainhand.GlamourName);
-        Assert.IsEmpty(gear.Mainhand.Stain);
+        Assert.IsEmpty(gear.Mainhand.Dye1Name);
+        Assert.IsEmpty(gear.Mainhand.Dye1Name);
         
         Assert.IsNull(gear.Offhand);
 

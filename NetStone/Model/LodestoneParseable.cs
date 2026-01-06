@@ -183,7 +183,11 @@ public abstract class LodestoneParseable
     {
         var node = QueryNode(pack);
 
-        return node?.Attributes.FirstOrDefault(x => x.Name == attribute)?.Value;
+        var nodeValue = node?.Attributes.FirstOrDefault(x => x.Name == attribute)?.Value;
+
+        return pack.Regex is not null
+            ? Regex.Replace(nodeValue ?? string.Empty, pack.Regex, "$1")
+            : nodeValue;
     }
 
     /// <summary>

@@ -32,10 +32,28 @@ public class GearEntryDefinition
     public DefinitionsPack MirageDbLink { get; set; }
 
     /// <summary>
-    /// Die of the item
+    /// Dye 1 of the item
     /// </summary>
-    [JsonProperty("STAIN")]
-    public DefinitionsPack Stain { get; set; }
+    [JsonProperty("STAIN_1")]
+    public DefinitionsPack Stain1 { get; set; }
+    
+    /// <summary>
+    /// Color of dye 1 of the item
+    /// </summary>
+    [JsonProperty("STAIN_1_COLOR")]
+    public DefinitionsPack Stain1Color { get; set; }
+    
+    /// <summary>
+    /// Dye 2 of the item
+    /// </summary>
+    [JsonProperty("STAIN_2")]
+    public DefinitionsPack Stain2 { get; set; }
+    
+    /// <summary>
+    /// Color of dye 2 of the item
+    /// </summary>
+    [JsonProperty("STAIN_2_COLOR")]
+    public DefinitionsPack Stain2Color { get; set; }
 
     /// <summary>
     /// Materia Slot 1

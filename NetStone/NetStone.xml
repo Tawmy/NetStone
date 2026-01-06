@@ -748,9 +748,24 @@
             Link to Eorzea Database for glamour item
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain">
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain1">
             <summary>
-            Die of the item
+            Dye 1 of the item
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain1Color">
+            <summary>
+            Color of dye 1 of the item
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain2">
+            <summary>
+            Dye 2 of the item
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain2Color">
+            <summary>
+            Color of dye 2 of the item
             </summary>
         </member>
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Materia1">
@@ -2914,9 +2929,34 @@
             Name of the glamoured item.
             </summary>
         </member>
-        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Stain">
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye1Name">
             <summary>
-            Name of the dye applied to this item.
+            Name of the dye applied to this item in slot 1.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye1DatabaseLink">
+            <summary>
+            Link to the Eorzea DB page of the dye applied to this item in slot 1.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye1Color">
+            <summary>
+            Hex color code of the dye applied to this item in slot 1.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye2Name">
+            <summary>
+            Name of the dye applied to this item in slot 2.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye2DatabaseLink">
+            <summary>
+            Link to the Eorzea DB page of the dye applied to this item in slot 2.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye2Color">
+            <summary>
+            Hex color code of the dye applied to this item in slot 2.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Materia">

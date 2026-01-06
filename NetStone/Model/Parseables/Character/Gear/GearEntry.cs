@@ -64,10 +64,64 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     public string GlamourName => Parse(this.definition.MirageName);
 
     /// <summary>
-    /// Name of the dye applied to this item.
+    /// Name of the dye applied to this item in slot 1.
     /// </summary>
-    //TODO: parse
-    public string Stain => Parse(this.definition.Stain);
+    public string Dye1Name => !string.IsNullOrEmpty(Dye1Color) ? Parse(this.definition.Stain1) : string.Empty;
+
+    /// <summary>
+    /// Link to the Eorzea DB page of the dye applied to this item in slot 1.
+    /// </summary>
+    public Uri? Dye1DatabaseLink => !string.IsNullOrEmpty(Dye1Color) ? ParseHref(this.definition.Stain1) : null;
+
+    /// <summary>
+    /// Hex color code of the dye applied to this item in slot 1.
+    /// </summary>
+    public string Dye1Color => ParseDirectInnerText(this.definition.Stain1Color);
+
+    /// <summary>
+    /// Name of the dye applied to this item in slot 2.
+    /// </summary>
+    public string Dye2Name
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(Dye2Color))
+            {
+                // if dye 2 not set, return nothing
+                return string.Empty;
+            }
+
+            // Check whether name for dye 2 is set. If dye 1 doesn't exist, this will falsely parse as dye 1's name
+            var stain2 = Parse(this.definition.Stain2);
+            return !string.IsNullOrEmpty(stain2)
+                ? stain2
+                : Parse(this.definition.Stain1);
+        }
+    }
+
+    /// <summary>
+    /// Link to the Eorzea DB page of the dye applied to this item in slot 2.
+    /// </summary>
+    public Uri? Dye2DatabaseLink
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(Dye2Color))
+            {
+                // if dye 2 not set, return nothing
+                return null;
+            }
+
+            // Check whether link for dye 2 is set. If dye 1 doesn't exist, this will falsely parse as dye 1's link
+            var stain2db = ParseHref(this.definition.Stain2);
+            return stain2db ?? ParseHref(this.definition.Stain1);
+        }
+    }
+
+    /// <summary>
+    /// Hex color code of the dye applied to this item in slot 2.
+    /// </summary>
+    public string Dye2Color => ParseDirectInnerText(this.definition.Stain2Color);
 
     /// <summary>
     /// Materia applied to this item.
