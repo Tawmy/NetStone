@@ -144,6 +144,12 @@ public class CharacterGearDefinition : IDefinition
     /// </summary>
     [JsonProperty("FEET")]
     public GearEntryDefinition Feet { get; set; }
+    
+    /// <summary>
+    /// Facewear
+    /// </summary>
+    [JsonProperty("FACEWEAR")]
+    public GearEntryDefinition Facewear { get; set; }
 
     /// <summary>
     /// Earrings

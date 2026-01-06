@@ -843,6 +843,11 @@
             Feet
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.CharacterGearDefinition.Facewear">
+            <summary>
+            Facewear
+            </summary>
+        </member>
         <member name="P:NetStone.Definitions.Model.Character.CharacterGearDefinition.Earrings">
             <summary>
             Earrings
@@ -2834,6 +2839,11 @@
         <member name="P:NetStone.Model.Parseables.Character.Gear.CharacterGear.Feet">
             <summary>
             Information about the characters' shoes. Null if none equipped.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.CharacterGear.Facewear">
+            <summary>
+            Information about the characters' facewear. Null if none equipped.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.CharacterGear.Earrings">
