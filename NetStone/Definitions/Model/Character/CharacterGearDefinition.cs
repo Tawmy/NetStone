@@ -12,6 +12,12 @@ public class GearEntryDefinition
     /// </summary>
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
+    
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    [JsonProperty("ICON_LINK")]
+    public DefinitionsPack IconLink { get; set; }
 
     /// <summary>
     /// Link to Eorzea Database for item
@@ -24,6 +30,12 @@ public class GearEntryDefinition
     /// </summary>
     [JsonProperty("MIRAGE_NAME")]
     public DefinitionsPack MirageName { get; set; }
+
+    /// <summary>
+    /// Link to glamour item's icon
+    /// </summary>
+    [JsonProperty("MIRAGE_ICON_LINK")]
+    public DefinitionsPack MirageIconLink { get; set; }
 
     /// <summary>
     /// Link to Eorzea Database for glamour item
@@ -114,6 +126,12 @@ public class SoulcrystalEntryDefinition
     /// </summary>
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
+    
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    [JsonProperty("ICON_LINK")]
+    public DefinitionsPack IconLink { get; set; }
 }
 
 /// <summary>

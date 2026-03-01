@@ -733,6 +733,11 @@
             Name of the item
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.IconLink">
+            <summary>
+            Icon of the item
+            </summary>
+        </member>
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.DbLink">
             <summary>
             Link to Eorzea Database for item
@@ -741,6 +746,11 @@
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.MirageName">
             <summary>
             Name of glamour
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.MirageIconLink">
+            <summary>
+            Link to glamour item's icon
             </summary>
         </member>
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.MirageDbLink">
@@ -816,6 +826,11 @@
         <member name="P:NetStone.Definitions.Model.Character.SoulcrystalEntryDefinition.Name">
             <summary>
             Name of the item
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.SoulcrystalEntryDefinition.IconLink">
+            <summary>
+            Icon of the item
             </summary>
         </member>
         <member name="T:NetStone.Definitions.Model.Character.CharacterGearDefinition">
@@ -2943,6 +2958,11 @@
             Name of this item.
             </summary>
         </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.IconLink">
+            <summary>
+            Icon of this item.
+            </summary>
+        </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.IsHq">
             <summary>
             Indicates if this item is high quality
@@ -2961,6 +2981,11 @@
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.GlamourName">
             <summary>
             Name of the glamoured item.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.GlamourIconLink">
+            <summary>
+            Link to the glamoured item's icon.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Stain">
@@ -3011,6 +3036,11 @@
         <member name="P:NetStone.Model.Parseables.Character.Gear.SoulcrystalEntry.ItemName">
             <summary>
             Name of the item
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.SoulcrystalEntry.IconLink">
+            <summary>
+            Icon of the item
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.SoulcrystalEntry.Exists">
