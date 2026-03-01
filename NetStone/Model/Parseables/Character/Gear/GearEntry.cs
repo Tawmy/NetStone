@@ -42,6 +42,11 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// Name of this item.
     /// </summary>
     public string ItemName => Parse(this.definition.Name);
+    
+    /// <summary>
+    /// Icon of this item.
+    /// </summary>
+    public Uri? IconLink => ParseImageSource(this.definition.IconLink);
 
     /// <summary>
     /// Indicates if this item is high quality
@@ -62,6 +67,11 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// Name of the glamoured item.
     /// </summary>
     public string GlamourName => Parse(this.definition.MirageName);
+    
+    /// <summary>
+    /// Link to the glamoured item's icon.
+    /// </summary>
+    public Uri? GlamourIconLink => ParseImageSource(this.definition.MirageIconLink);
 
     /// <summary>
     /// Name of the dye applied to this item in slot 1.

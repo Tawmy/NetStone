@@ -24,6 +24,11 @@ public class SoulcrystalEntry : LodestoneParseable, IOptionalParseable<Soulcryst
     /// Name of the item
     /// </summary>
     public string ItemName => Parse(this.definition.Name);
+    
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    public Uri? IconLink => ParseImageSource(this.definition.IconLink);
 
     /// <inheritdoc />
     public bool Exists => HasNode(this.definition.Name);

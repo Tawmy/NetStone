@@ -12,6 +12,12 @@ public class GearEntryDefinition
     /// </summary>
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
+    
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    [JsonProperty("ICON_LINK")]
+    public DefinitionsPack IconLink { get; set; }
 
     /// <summary>
     /// Link to Eorzea Database for item
@@ -24,6 +30,12 @@ public class GearEntryDefinition
     /// </summary>
     [JsonProperty("MIRAGE_NAME")]
     public DefinitionsPack MirageName { get; set; }
+
+    /// <summary>
+    /// Link to glamour item's icon
+    /// </summary>
+    [JsonProperty("MIRAGE_ICON_LINK")]
+    public DefinitionsPack MirageIconLink { get; set; }
 
     /// <summary>
     /// Link to Eorzea Database for glamour item
@@ -99,6 +111,30 @@ public class GearEntryDefinition
 }
 
 /// <summary>
+/// Definition for Facewear slot
+/// </summary>
+public class FacewearEntryDefinition
+{
+    /// <summary>
+    /// Name of the facewear
+    /// </summary>
+    [JsonProperty("NAME")]
+    public DefinitionsPack Name { get; set; }
+    
+    /// <summary>
+    /// Name of the item this facewear is unlocked by
+    /// </summary>
+    [JsonProperty("UNLOCKED_BY")]
+    public DefinitionsPack UnlockedBy { get; set; }
+    
+    /// <summary>
+    /// Link to Eorzea Database for facewear
+    /// </summary>
+    [JsonProperty("DB_LINK")]
+    public DefinitionsPack DbLink { get; set; }
+}
+
+/// <summary>
 /// Definition for Soul Crystal slot
 /// </summary>
 public class SoulcrystalEntryDefinition
@@ -108,6 +144,12 @@ public class SoulcrystalEntryDefinition
     /// </summary>
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
+    
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    [JsonProperty("ICON_LINK")]
+    public DefinitionsPack IconLink { get; set; }
 }
 
 /// <summary>
@@ -146,12 +188,6 @@ public class CharacterGearDefinition : IDefinition
     public GearEntryDefinition Hands { get; set; }
 
     /// <summary>
-    /// Waist
-    /// </summary>
-    [JsonProperty("WAIST")]
-    public GearEntryDefinition Waist { get; set; }
-
-    /// <summary>
     /// Legs
     /// </summary>
     [JsonProperty("LEGS")]
@@ -162,6 +198,12 @@ public class CharacterGearDefinition : IDefinition
     /// </summary>
     [JsonProperty("FEET")]
     public GearEntryDefinition Feet { get; set; }
+    
+    /// <summary>
+    /// Facewear
+    /// </summary>
+    [JsonProperty("FACEWEAR")]
+    public FacewearEntryDefinition Facewear { get; set; }
 
     /// <summary>
     /// Earrings
