@@ -73,7 +73,7 @@ public class LodestoneClient : IDisposable
     }
     
     /// <summary>
-    /// Initializes and returns a new Lodestone client with current definitions loaded from xivapi/lodestone-css-selectors
+    /// Initializes and returns a new Lodestone client with current definitions loaded from tawmy/lodestone-css-selectors
     /// </summary>
     /// <param name="gameData">Service providing game data for parsing</param>
     /// <param name="lodestoneBaseAddress">Base address for Lodestone access (defaults to EU Lodestone)</param>

@@ -15,7 +15,7 @@ namespace NetStone.Definitions;
 /// </summary>
 public class XivApiDefinitionsContainer : DefinitionsContainer
 {
-    private const string DefinitionRepoBase = "https://raw.githubusercontent.com/xivapi/lodestone-css-selectors/main/";
+    private const string DefinitionRepoBase = "https://raw.githubusercontent.com/tawmy/lodestone-css-selectors/main/";
 
     private readonly HttpClient client;
 
@@ -31,7 +31,7 @@ public class XivApiDefinitionsContainer : DefinitionsContainer
     }
 
     /// <summary>
-    /// Fetches current CSS selector definitions from xivapi/lodestone-css-selectors github repository.
+    /// Fetches current CSS selector definitions from tawmy/lodestone-css-selectors github repository.
     /// </summary>
     /// <exception cref="HttpRequestException"></exception>
     /// <exception cref="FormatException"></exception>

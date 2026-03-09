@@ -1681,7 +1681,7 @@
         </member>
         <member name="M:NetStone.Definitions.XivApiDefinitionsContainer.Reload">
             <summary>
-            Fetches current CSS selector definitions from xivapi/lodestone-css-selectors github repository.
+            Fetches current CSS selector definitions from tawmy/lodestone-css-selectors github repository.
             </summary>
             <exception cref="T:System.Net.Http.HttpRequestException"></exception>
             <exception cref="T:System.FormatException"></exception>
@@ -1824,7 +1824,7 @@
         </member>
         <member name="M:NetStone.LodestoneClient.GetClientAsync(NetStone.GameData.IGameDataProvider,System.String)">
             <summary>
-            Initializes and returns a new Lodestone client with current definitions loaded from xivapi/lodestone-css-selectors
+            Initializes and returns a new Lodestone client with current definitions loaded from tawmy/lodestone-css-selectors
             </summary>
             <param name="gameData">Service providing game data for parsing</param>
             <param name="lodestoneBaseAddress">Base address for Lodestone access (defaults to EU Lodestone)</param>
@@ -3003,7 +3003,7 @@
             Link to the glamoured item's icon.
             </summary>
         </member>
-        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Stain">
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye1Name">
             <summary>
             Name of the dye applied to this item in slot 1.
             </summary>
