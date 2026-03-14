@@ -108,6 +108,12 @@ public class GearEntryDefinition
     /// </summary>
     [JsonProperty("ITEM_LEVEL")]
     public DefinitionsPack ItemLevel { get; set; }
+    
+    /// <summary>
+    /// Rarity of the item
+    /// </summary>
+    [JsonProperty("RARITY")]
+    public DefinitionsPack Rarity { get; set; }
 }
 
 /// <summary>

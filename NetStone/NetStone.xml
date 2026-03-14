@@ -813,6 +813,11 @@
             Item level of the item
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Rarity">
+            <summary>
+            Rarity of the item
+            </summary>
+        </member>
         <member name="T:NetStone.Definitions.Model.Character.FacewearEntryDefinition">
             <summary>
             Definition for Facewear slot
@@ -3065,7 +3070,12 @@
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.ItemLevel">
             <summary>
-            Item level of this item
+            Item level of this item.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Rarity">
+            <summary>
+            Rarity of this item.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Exists">
