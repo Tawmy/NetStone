@@ -126,7 +126,19 @@ public class FacewearEntryDefinition
     /// </summary>
     [JsonProperty("UNLOCKED_BY")]
     public DefinitionsPack UnlockedBy { get; set; }
+
+    /// <summary>
+    /// Icon of the item
+    /// </summary>
+    [JsonProperty("ICON_LINK")]
+    public DefinitionsPack IconLink { get; set; }
     
+    /// <summary>
+    /// Link to glamour item's icon
+    /// </summary>
+    [JsonProperty("UNLOCKED_BY_ICON_LINK")]
+    public DefinitionsPack UnlockedByIconLink { get; set; }
+
     /// <summary>
     /// Link to Eorzea Database for facewear
     /// </summary>

@@ -32,6 +32,16 @@ public class FacewearEntry : LodestoneParseable, IOptionalParseable<FacewearEntr
     /// </summary>
     public Uri? DbLink => ParseHref(this.definition.DbLink);
     
+    /// <summary>
+    /// Icon of this item.
+    /// </summary>
+    public Uri? IconLink => ParseImageSource(this.definition.IconLink);
+    
+    /// <summary>
+    /// Link to the glamoured item's icon.
+    /// </summary>
+    public Uri? UnlockedByIconLink => ParseImageSource(this.definition.UnlockedByIconLink);
+    
     ///<inheritdoc />
     public bool Exists => HasNode(this.definition.Name);
     

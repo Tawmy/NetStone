@@ -828,6 +828,16 @@
             Name of the item this facewear is unlocked by
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.FacewearEntryDefinition.IconLink">
+            <summary>
+            Icon of the item
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.FacewearEntryDefinition.UnlockedByIconLink">
+            <summary>
+            Link to glamour item's icon
+            </summary>
+        </member>
         <member name="P:NetStone.Definitions.Model.Character.FacewearEntryDefinition.DbLink">
             <summary>
             Link to Eorzea Database for facewear
@@ -2937,6 +2947,16 @@
         <member name="P:NetStone.Model.Parseables.Character.Gear.FacewearEntry.DbLink">
             <summary>
             Link to this facewear's Eorzea DB page.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.FacewearEntry.IconLink">
+            <summary>
+            Icon of this item.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.Gear.FacewearEntry.UnlockedByIconLink">
+            <summary>
+            Link to the glamoured item's icon.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.FacewearEntry.Exists">
