@@ -206,7 +206,10 @@ public abstract class LodestoneParseable
         // Normalize href to have the lodestone URL in front
         if (!href.StartsWith("http://", StringComparison.InvariantCulture) &&
             !href.StartsWith("https://", StringComparison.InvariantCulture))
-            href = Constants.LodestoneBase + href;
+        {
+            var prefix = !href.StartsWith('/') ? "/" : string.Empty;
+            href = $"{Constants.LodestoneBase}{prefix}{href}";
+        }
 
         return new Uri(href);
     }
