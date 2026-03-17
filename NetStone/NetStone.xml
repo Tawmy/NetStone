@@ -2142,12 +2142,13 @@
             <param name="noAttribute">Indicates to not parse attributes</param>
             <returns>Text inside node</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseInnerHtml(NetStone.Definitions.DefinitionsPack,System.Boolean)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseInnerHtml(NetStone.Definitions.DefinitionsPack,System.Boolean,System.Boolean)">
             <summary>
             Get the inner html of a node
             </summary>
             <param name="pack">Definition of node</param>
             <param name="noAttribute">Indicates to not parse attributes</param>
+            <param name="skipRegex">Indicates to not do regex parsing</param>
             <returns>Text inside node</returns>
         </member>
         <member name="M:NetStone.Model.LodestoneParseable.ParseRegex(NetStone.Definitions.DefinitionsPack)">
@@ -2172,19 +2173,21 @@
             <param name="pack">Definition of the node.</param>
             <returns>Parsed tooltip.</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack,System.Boolean)">
             <summary>
             Parse attribute from pack.
             </summary>
             <param name="pack">Definition of the node.</param>
+            <param name="skipRegex">Indicates to skip regex parsing.</param>
             <returns>Parsed attribute.</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack,System.String)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack,System.String,System.Boolean)">
             <summary>
             Parse specified attribute via selector from pack.
             </summary>
             <param name="pack">Definition of the node.</param>
             <param name="attribute">Attribute to parse.</param>
+            <param name="skipRegex">Indicates to skip regex parsing.</param>
             <returns>Parsed attribute.</returns>
         </member>
         <member name="M:NetStone.Model.LodestoneParseable.ParseHref(NetStone.Definitions.DefinitionsPack)">

@@ -104,18 +104,20 @@ public abstract class LodestoneParseable
 
         return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : "";
     }
+
     /// <summary>
     /// Get the inner html of a node
     /// </summary>
     /// <param name="pack">Definition of node</param>
     /// <param name="noAttribute">Indicates to not parse attributes</param>
+    /// <param name="skipRegex">Indicates to not do regex parsing</param>
     /// <returns>Text inside node</returns>
-    protected string ParseInnerHtml(DefinitionsPack pack, bool noAttribute = false)
+    protected string ParseInnerHtml(DefinitionsPack pack, bool noAttribute = false, bool skipRegex = false)
     {
         var node = QueryNode(pack);
 
         // Handle default attribute parsing
-        var text = !string.IsNullOrEmpty(pack.Attribute) && !noAttribute ? ParseAttribute(pack) : node?.InnerHtml;
+        var text = !string.IsNullOrEmpty(pack.Attribute) && !noAttribute ? ParseAttribute(pack, skipRegex) : node?.InnerHtml;
 
         return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : "";
     }
@@ -127,7 +129,7 @@ public abstract class LodestoneParseable
     /// <returns>Matched Regex groups.</returns>
     protected GroupCollection ParseRegex(DefinitionsPack pack)
     {
-        var text = ParseInnerHtml(pack);
+        var text = ParseInnerHtml(pack, skipRegex: true);
 
         var regex = new Regex(pack.Regex ?? "");
         var match = regex.Match(text);
@@ -169,23 +171,25 @@ public abstract class LodestoneParseable
     /// Parse attribute from pack.
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
+    /// <param name="skipRegex">Indicates to skip regex parsing.</param>
     /// <returns>Parsed attribute.</returns>
-    protected string? ParseAttribute(DefinitionsPack pack) =>
-        pack.Attribute == null ? null : ParseAttribute(pack, pack.Attribute);
+    protected string? ParseAttribute(DefinitionsPack pack, bool skipRegex = false) =>
+        pack.Attribute == null ? null : ParseAttribute(pack, pack.Attribute, skipRegex);
 
     /// <summary>
     /// Parse specified attribute via selector from pack.
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
     /// <param name="attribute">Attribute to parse.</param>
+    /// <param name="skipRegex">Indicates to skip regex parsing.</param>
     /// <returns>Parsed attribute.</returns>
-    protected string? ParseAttribute(DefinitionsPack pack, string attribute)
+    protected string? ParseAttribute(DefinitionsPack pack, string attribute, bool skipRegex = false)
     {
         var node = QueryNode(pack);
 
         var nodeValue = node?.Attributes.FirstOrDefault(x => x.Name == attribute)?.Value;
 
-        return pack.Regex is not null
+        return pack.Regex is not null && !skipRegex
             ? Regex.Replace(nodeValue ?? string.Empty, pack.Regex, "$1")
             : nodeValue;
     }
