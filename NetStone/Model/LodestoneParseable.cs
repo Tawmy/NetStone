@@ -233,7 +233,10 @@ public abstract class LodestoneParseable
             return null;
 
         // Trim last /
-        link = link.Substring(0, link.Length - 1);
+        if (link.EndsWith("/"))
+        {
+            link = link.Substring(0, link.Length - 1);
+        }
 
         // Get only the ID
         link = link.Substring(link.LastIndexOf("/", StringComparison.InvariantCulture) + 1);
