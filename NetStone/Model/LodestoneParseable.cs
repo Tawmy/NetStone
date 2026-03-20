@@ -198,11 +198,12 @@ public abstract class LodestoneParseable
     /// Parse href attribute on a node.
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
+    /// <param name="skipRegex">Indicates to skip regex parsing.</param>
     /// <returns>Parsed href.</returns>
     // TODO: Switch to attribute in pack
-    protected Uri? ParseHref(DefinitionsPack pack)
+    protected Uri? ParseHref(DefinitionsPack pack, bool skipRegex = false)
     {
-        var href = ParseAttribute(pack, "href");
+        var href = ParseAttribute(pack, "href", skipRegex);
 
         if (string.IsNullOrEmpty(href))
             return null;

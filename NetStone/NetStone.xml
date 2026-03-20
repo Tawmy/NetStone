@@ -2190,11 +2190,12 @@
             <param name="skipRegex">Indicates to skip regex parsing.</param>
             <returns>Parsed attribute.</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseHref(NetStone.Definitions.DefinitionsPack)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseHref(NetStone.Definitions.DefinitionsPack,System.Boolean)">
             <summary>
             Parse href attribute on a node.
             </summary>
             <param name="pack">Definition of the node.</param>
+            <param name="skipRegex">Indicates to skip regex parsing.</param>
             <returns>Parsed href.</returns>
         </member>
         <member name="M:NetStone.Model.LodestoneParseable.ParseHrefId(NetStone.Definitions.DefinitionsPack)">
