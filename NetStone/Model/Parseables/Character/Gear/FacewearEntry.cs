@@ -25,22 +25,22 @@ public class FacewearEntry : LodestoneParseable, IOptionalParseable<FacewearEntr
     /// <summary>
     /// Name of the item this facewear is unlocked by
     /// </summary>
-    public string? UnlockedBy => ParseTooltip(this.definition.UnlockedBy);
+    public string? UnlockedBy => Parse(this.definition.UnlockedBy);
 
     /// <summary>
     /// Link to this facewear's Eorzea DB page.
     /// </summary>
-    public Uri? DbLink => ParseHref(this.definition.DbLink);
+    public Uri? DbLink => ParseLodestoneUri(this.definition.DbLink);
     
     /// <summary>
     /// Icon of this item.
     /// </summary>
-    public Uri? IconLink => ParseImageSource(this.definition.IconLink);
+    public Uri IconLink => new(Parse(this.definition.IconLink));
     
     /// <summary>
     /// Link to the glamoured item's icon.
     /// </summary>
-    public Uri? UnlockedByIconLink => ParseImageSource(this.definition.UnlockedByIconLink);
+    public Uri UnlockedByIconLink => new(Parse(this.definition.UnlockedByIconLink));
     
     ///<inheritdoc />
     public bool Exists => HasNode(this.definition.Name);

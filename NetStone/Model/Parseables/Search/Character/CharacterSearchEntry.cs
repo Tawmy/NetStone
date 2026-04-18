@@ -29,7 +29,7 @@ public class CharacterSearchEntry : LodestoneParseable
     /// <summary>
     /// Lodestone Id
     /// </summary>
-    public string? Id => ParseHrefId(this.definition.Id);
+    public string? Id => Parse(this.definition.Id);
 
     /// <summary>
     /// Fetch character profile

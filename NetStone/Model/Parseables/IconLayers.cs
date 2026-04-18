@@ -20,15 +20,15 @@ public class IconLayers : LodestoneParseable
     /// <summary>
     /// Link to the top layer image of the icon.
     /// </summary>
-    public Uri? TopLayer => ParseImageSource(this.definition.Top);
+    public Uri? TopLayer => Parse(this.definition.Top) is { Length: > 0 } topLayer ? new Uri(topLayer) : null;
 
     /// <summary>
     /// Link to the top layer image of the icon.
     /// </summary>
-    public Uri? MiddleLayer => ParseImageSource(this.definition.Middle);
+    public Uri? MiddleLayer => Parse(this.definition.Middle) is { Length: > 0 } middleLayer ? new Uri(middleLayer) : null;
 
     /// <summary>
     /// Link to the top layer image of the icon.
     /// </summary>
-    public Uri? BottomLayer => ParseImageSource(this.definition.Bottom);
+    public Uri? BottomLayer => Parse(this.definition.Bottom) is { Length: > 0 } bottomLayer ? new Uri(bottomLayer) : null;
 }

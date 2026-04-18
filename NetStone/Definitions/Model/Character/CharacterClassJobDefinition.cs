@@ -62,10 +62,16 @@ public class ClassJobEntryDefinition
     public DefinitionsPack Level { get; set; }
 
     /// <summary>
-    /// Indicates of the job is Unlocked
+    /// Indicates if the job is unlocked
     /// </summary>
     [JsonProperty("UNLOCKSTATE")]
     public DefinitionsPack UnlockState { get; set; }
+    
+    /// <summary>
+    /// Indicates if the job is specialized
+    /// </summary>
+    [JsonProperty("IS_SPECIALIZED")]
+    public DefinitionsPack IsSpecialized { get; set; }
 
     /// <summary>
     /// Experience

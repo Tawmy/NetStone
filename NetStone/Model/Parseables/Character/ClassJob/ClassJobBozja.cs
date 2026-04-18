@@ -31,61 +31,25 @@ public class ClassJobBozja : LodestoneParseable, IOptionalParseable<ClassJobBozj
 	/// The level this class or job is at.
 	/// </summary>
 	public int Level => int.TryParse(Parse(this.definition.LEVEL), out var levelOut) ? levelOut : 0 ;
-
-	private string MettleString => ParseInnerText(this.definition.METTLE);
-
-	private int? mettleCurrentVal;
-
+	
 	/// <summary>
 	/// The amount of current achieved EXP on this level.
 	/// </summary>
-	public int MettleCurrent
-	{
-		get
-		{
-			if (!this.mettleCurrentVal.HasValue)
-				ParseMettle();
-
-			return this.mettleCurrentVal!.Value;
-		}
-	}
-
-	private int? mettleMaxVal;
-
+	public int MettleCurrent => int.TryParse(Parse(this.definition.METTLE, "Mettle").Replace(",", ""), out var mettleCurrent)
+		? mettleCurrent
+		: 0;
+	
 	/// <summary>
 	/// The amount of EXP to be reached to gain the next level.
 	/// </summary>
-	public int MettleMax
-	{
-		get
-		{
-			if (!this.mettleCurrentVal.HasValue)
-				ParseMettle();
-
-			return this.mettleMaxVal!.Value;
-		}
-	}
+	public int MettleMax => int.TryParse(Parse(this.definition.METTLE, "MettleNextRank").Replace(",", ""), out var mettleMax)
+		? mettleMax
+		: 0;
 
 	/// <summary>
 	/// The outstanding amount of EXP to go to the next level.
 	/// </summary>
 	public int MettleToGo => this.MettleMax - this.MettleCurrent;
-
-	private void ParseMettle()
-	{
-		if (!this.Exists)
-		{
-			this.mettleCurrentVal = 0;
-			this.mettleMaxVal = 0;
-
-			return;
-		}
-
-		var mettleVals = this.MettleString.Split(" / ").Select(x => x.Replace(",", string.Empty)).ToArray();
-
-		this.mettleCurrentVal = int.TryParse(Regex.Match(mettleVals[0], @"\d+").Value, out var mettleCur) ? mettleCur : 0;
-		this.mettleMaxVal = int.TryParse(Regex.Match(mettleVals[1], @"\d+").Value, out var mettleMax) ? mettleMax : 0;
-	}
 
 	/// <summary>
 	/// Value indicating if this class is unlocked.

@@ -154,6 +154,11 @@
             HTML attribute that holds information. Only set if data is not in the inner text
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.DefinitionsPack.Type">
+            <summary>
+            Type of the attribute. Currently only booleans are treated specifically.
+            </summary>
+        </member>
         <member name="T:NetStone.Definitions.Model.Character.CharacterAchievementDefinition">
             <summary>
             Models the definition of the achievement list
@@ -351,7 +356,12 @@
         </member>
         <member name="P:NetStone.Definitions.Model.Character.ClassJobEntryDefinition.UnlockState">
             <summary>
-            Indicates of the job is Unlocked
+            Indicates if the job is unlocked
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.ClassJobEntryDefinition.IsSpecialized">
+            <summary>
+            Indicates if the job is specialized
             </summary>
         </member>
         <member name="P:NetStone.Definitions.Model.Character.ClassJobEntryDefinition.Exp">
@@ -763,6 +773,11 @@
             Dye 1 of the item
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain1DbLink">
+            <summary>
+            Link to Eorzea Database for dye 1 of the item
+            </summary>
+        </member>
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain1Color">
             <summary>
             Color of dye 1 of the item
@@ -771,6 +786,11 @@
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain2">
             <summary>
             Dye 2 of the item
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain2DbLink">
+            <summary>
+            Link to Eorzea Database for dye 2 of the item
             </summary>
         </member>
         <member name="P:NetStone.Definitions.Model.Character.GearEntryDefinition.Stain2Color">
@@ -2127,97 +2147,49 @@
             <param name="pack">Definition of the node.</param>
             <returns>True the node existence, false otherwise</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.Parse(NetStone.Definitions.DefinitionsPack)">
+        <member name="M:NetStone.Model.LodestoneParseable.Parse(NetStone.Definitions.DefinitionsPack,System.String)">
             <summary>
-            Parse the InnerText via selector.
+            Parse via selector. Attribute and regex from selector will be used.
             </summary>
             <param name="pack">Definition of the node.</param>
+            <param name="regexGroup">Group to select from regex with named groups.</param>
             <returns>InnerText of the node or empty string on parse error.</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseInnerText(NetStone.Definitions.DefinitionsPack,System.Boolean)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseLodestoneUri(NetStone.Definitions.DefinitionsPack)">
+            <summary>
+            Parse a Lodestone Uri. Parsed Uris are relative and will have the Lodestone base URL prepended.
+            </summary>
+            <param name="pack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NetStone.Model.LodestoneParseable.ParseInnerText(NetStone.Definitions.DefinitionsPack)">
             <summary>
             Get the inner text of a node
             </summary>
             <param name="pack">Definition of node</param>
-            <param name="noAttribute">Indicates to not parse attributes</param>
             <returns>Text inside node</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseInnerHtml(NetStone.Definitions.DefinitionsPack,System.Boolean,System.Boolean)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseInnerHtml(NetStone.Definitions.DefinitionsPack)">
             <summary>
             Get the inner html of a node
             </summary>
             <param name="pack">Definition of node</param>
-            <param name="noAttribute">Indicates to not parse attributes</param>
-            <param name="skipRegex">Indicates to not do regex parsing</param>
             <returns>Text inside node</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseRegex(NetStone.Definitions.DefinitionsPack)">
-            <summary>
-            Parse the InnerText via selector, then parse out regex groups.
-            </summary>
-            <param name="pack">Definition of the node.</param>
-            <returns>Matched Regex groups.</returns>
-        </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseDirectInnerText(NetStone.Definitions.DefinitionsPack,System.Boolean)">
-            <summary>
-            Parses the DirectInnerText via selector.
-            </summary>
-            <param name="pack">Definition of the node.</param>
-            <param name="noAttribute">Determines if Attributes are parsed or not.</param>
-            <returns></returns>
-        </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseTooltip(NetStone.Definitions.DefinitionsPack)">
-            <summary>
-            Parse tooltip attribute.
-            </summary>
-            <param name="pack">Definition of the node.</param>
-            <returns>Parsed tooltip.</returns>
-        </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack,System.Boolean)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack)">
             <summary>
             Parse attribute from pack.
             </summary>
             <param name="pack">Definition of the node.</param>
-            <param name="skipRegex">Indicates to skip regex parsing.</param>
             <returns>Parsed attribute.</returns>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack,System.String,System.Boolean)">
+        <member name="M:NetStone.Model.LodestoneParseable.ParseAttribute(NetStone.Definitions.DefinitionsPack,System.String)">
             <summary>
             Parse specified attribute via selector from pack.
             </summary>
             <param name="pack">Definition of the node.</param>
             <param name="attribute">Attribute to parse.</param>
-            <param name="skipRegex">Indicates to skip regex parsing.</param>
             <returns>Parsed attribute.</returns>
-        </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseHref(NetStone.Definitions.DefinitionsPack,System.Boolean)">
-            <summary>
-            Parse href attribute on a node.
-            </summary>
-            <param name="pack">Definition of the node.</param>
-            <param name="skipRegex">Indicates to skip regex parsing.</param>
-            <returns>Parsed href.</returns>
-        </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseHrefId(NetStone.Definitions.DefinitionsPack)">
-            <summary>
-            Parse out ID into string or null if node was not found.
-            </summary>
-            <param name="pack">Definition of the node.</param>
-            <returns>Parsed ID.</returns>
-        </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseHrefIdULong(NetStone.Definitions.DefinitionsPack)">
-            <summary>
-            Parse out ID into ulong or null if node was not found.
-            </summary>
-            <param name="pack">Definition of the node.</param>
-            <returns>Parsed ID.</returns>
-        </member>
-        <member name="M:NetStone.Model.LodestoneParseable.ParseImageSource(NetStone.Definitions.DefinitionsPack)">
-            <summary>
-            Parse image source attribute.
-            </summary>
-            <param name="pack">Definition of the node.</param>
-            <returns>Parsed image source.</returns>
         </member>
         <member name="M:NetStone.Model.LodestoneParseable.ParseTime(NetStone.Definitions.DefinitionsPack)">
             <summary>
@@ -3029,7 +3001,7 @@
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.GlamourIconLink">
             <summary>
-            Link to the glamoured item's icon.
+                Link to the glamoured item's icon.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.GearEntry.Dye1Name">
@@ -3210,11 +3182,6 @@
         <member name="P:NetStone.Model.Parseables.Character.LodestoneCharacter.PvPTeam">
             <summary>
             The character PvPTeam info.
-            </summary>
-        </member>
-        <member name="P:NetStone.Model.Parseables.Character.LodestoneCharacter.RaceClanGender">
-            <summary>
-            String containing information on clan, race and gender
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.LodestoneCharacter.Race">
@@ -3709,7 +3676,7 @@
         </member>
         <member name="P:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembersEntry.RankIcon">
             <summary>
-            Icon representing <see cref="P:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembersEntry.Rank"/>
+            Icon representing <see cref="P:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembersEntry.Rank" />
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembersEntry.FreeCompanyRank">

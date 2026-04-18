@@ -29,7 +29,7 @@ public class LinkshellSearchEntry : LodestoneParseable
     /// <summary>
     /// Lodestone Id
     /// </summary>
-    public string? Id => ParseHrefId(this.definition.Id);
+    public string? Id => Parse(this.definition.Id);
 
     /// <summary>
     /// Homeworld / Server

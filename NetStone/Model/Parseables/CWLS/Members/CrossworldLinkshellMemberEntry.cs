@@ -27,7 +27,7 @@ public class CrossworldLinkshellMemberEntry : LodestoneParseable
     /// <summary>
     /// ID
     /// </summary>
-    public string? Id => ParseHrefId(this.definition.Id);
+    public string? Id => Parse(this.definition.Id);
 
     /// <summary>
     /// Name

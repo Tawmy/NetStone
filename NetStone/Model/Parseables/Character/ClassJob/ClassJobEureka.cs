@@ -36,60 +36,24 @@ public class ClassJobEureka : LodestoneParseable, IOptionalParseable<ClassJobEur
 	/// </summary>
 	public int Level => int.TryParse(Parse(this.definition.Level), out var level)? level : 0;
 
-	private string ExpString => ParseInnerText(this.definition.Exp);
-
-	private int? expCurrentVal;
-
 	/// <summary>
 	/// The amount of current achieved EXP on this level.
 	/// </summary>
-	public int ExpCurrent
-	{
-		get
-		{
-			if (!this.expCurrentVal.HasValue)
-				ParseExp();
-
-			return this.expCurrentVal!.Value;
-		}
-	}
-
-	private int? expMaxVal;
+	public int ExpCurrent => int.TryParse(Parse(this.definition.Exp, "CurrentEXP").Replace(",", ""), out var expCurrent)
+		? expCurrent
+		: 0;
 
 	/// <summary>
 	/// The amount of EXP to be reached to gain the next level.
 	/// </summary>
-	public int ExpMax
-	{
-		get
-		{
-			if (!this.expCurrentVal.HasValue)
-				ParseExp();
-
-			return this.expMaxVal!.Value;
-		}
-	}
+	public int ExpMax => int.TryParse(Parse(this.definition.Exp, "MaxEXP").Replace(",", ""), out var expMax)
+		? expMax
+		: 0;
 
 	/// <summary>
 	/// The outstanding amount of EXP to go to the next level.
 	/// </summary>
 	public int ExpToGo => this.ExpMax - this.ExpCurrent;
-
-	private void ParseExp()
-	{
-		if (!this.Exists)
-		{
-			this.expCurrentVal = 0;
-			this.expMaxVal = 0;
-
-			return;
-		}
-
-		var expVals = this.ExpString.Split(" / ").Select(x => x.Replace(",", string.Empty)).ToArray();
-
-		this.expCurrentVal = int.TryParse(expVals[0], out var expCur) ? expCur : 0;
-		this.expMaxVal = int.TryParse(expVals[1], out var expMax) ? expMax : 0;
-	}
 
 	/// <summary>
 	/// Value indicating if this class is unlocked.

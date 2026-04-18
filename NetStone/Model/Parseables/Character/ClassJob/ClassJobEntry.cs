@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using HtmlAgilityPack;
 using NetStone.Definitions.Model.Character;
 
@@ -24,7 +25,7 @@ public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntr
     /// <summary>
     /// The name of this class and job combo.
     /// </summary>
-    public string Name => ParseTooltip(this.definition.UnlockState);
+    public string Name => Parse(this.definition.UnlockState);
 
     /// <summary>
     /// Value indicating whether this class has its job unlocked.
@@ -43,73 +44,29 @@ public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntr
         }
     }
 
-    private string ExpString => ParseInnerText(this.definition.Exp);
-
-    private long? expCurrentVal;
-
     /// <summary>
     /// The amount of current achieved EXP on this level.
     /// </summary>
-    public long ExpCurrent
-    {
-        get
-        {
-            if (!this.expCurrentVal.HasValue)
-                ParseExp();
-
-            return this.expCurrentVal!.Value;
-        }
-    }
-
-    private long? expMaxVal;
+    public long ExpCurrent => long.TryParse(Parse(this.definition.Exp, "CurrentEXP").Replace(",", ""), out var expCurrent)
+        ? expCurrent
+        : 0;
 
     /// <summary>
     /// The amount of EXP to be reached to gain the next level.
     /// </summary>
-    public long ExpMax
-    {
-        get
-        {
-            if (!this.expCurrentVal.HasValue)
-                ParseExp();
-
-            return this.expMaxVal!.Value;
-        }
-    }
+    public long ExpMax => long.TryParse(Parse(this.definition.Exp, "MaxEXP").Replace(",", ""), out var expMax)
+        ? expMax 
+        : 0;
 
     /// <summary>
     /// The outstanding amount of EXP to go to the next level.
     /// </summary>
     public long ExpToGo => this.ExpMax - this.ExpCurrent;
 
-    private void ParseExp()
-    {
-        if (!this.Exists)
-        {
-            this.expCurrentVal = 0;
-            this.expMaxVal = 0;
-
-            return;
-        }
-
-        var expVals = this.ExpString.Split(" / ").Select(x => x.Replace(",", string.Empty)).ToArray();
-
-        if (expVals[0] == "--")
-        {
-            this.expCurrentVal = 0;
-            this.expMaxVal = 0;
-
-            return;
-        }
-
-        this.expCurrentVal = long.Parse(expVals[0]);
-        this.expMaxVal = long.Parse(expVals[1]);
-    }
-
     /// <summary>
     /// Value indicating whether this job, if DoH or DoL, is specialized.
     /// </summary>
-    public bool IsSpecialized => ParseAttribute(this.definition.UnlockState, "class")?.Contains("--meister") ?? false;
+    public bool IsSpecialized => bool.TryParse(Parse(this.definition.IsSpecialized, "class"), out var isSpecialized) && isSpecialized;
 
     /// <summary>
     /// Value indicating if this class is unlocked.

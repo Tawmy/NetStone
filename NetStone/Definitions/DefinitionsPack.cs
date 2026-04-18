@@ -33,4 +33,10 @@ public class DefinitionsPack
     /// </summary>
     [JsonProperty("attribute")]
     public string? Attribute { get; set; }
+    
+    /// <summary>
+    /// Type of the attribute. Currently only booleans are treated specifically.
+    /// </summary>
+    [JsonProperty("type")]
+    public string? Type { get; set; }
 }

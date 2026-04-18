@@ -25,20 +25,17 @@ public class CharacterAchievementEntry : LodestoneParseable
     /// <summary>
     /// The Name of this achievement
     /// </summary>
-#if NETSTANDARD2_1
-    public string Name => ParseRegex(this.definition.Name).First(r => r.Name.Equals("Name")).Value;
-#else
-    public string Name => ParseRegex(this.definition.Name).Values.First(r => r.Name.Equals("Name")).Value;
-#endif
+    public string Name => Parse(this.definition.Name, "Name");
+
     /// <summary>
     /// ID of this achievement
     /// </summary>
-    public ulong? Id => ParseHrefIdULong(this.definition.Id);
+    public ulong Id => ulong.Parse(Parse(this.definition.Id));
 
     /// <summary>
     /// Link to the Eorzean Database
     /// </summary>
-    public Uri? DatabaseLink => ParseHref(this.definition.Id, true);
+    public Uri DatabaseLink => ParseLodestoneUri(this.definition.Id);
 
     /// <summary>
     /// Time when this character earned this achievement

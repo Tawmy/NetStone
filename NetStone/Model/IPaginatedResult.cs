@@ -150,10 +150,8 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
     }
     private void ParsePagesCount()
     {
-        var results = ParseRegex(this.PageDefinition.PageInfo);
-
-        this.currentPageVal = int.Parse(results["CurrentPage"].Value);
-        this.numPagesVal = int.Parse(results["NumPages"].Value);
+        this.currentPageVal = int.Parse(Parse(this.PageDefinition.PageInfo, "CurrentPage"));
+        this.numPagesVal = int.Parse(Parse(this.PageDefinition.PageInfo, "NumPages"));
     }
     
     /// <inheritdoc />

@@ -28,14 +28,7 @@ public class CharacterAchievementPage : PaginatedIdResult<CharacterAchievementPa
     /// <summary>
     /// Total number of achievements
     /// </summary>
-    public int TotalAchievements
-    {
-        get
-        {
-            var res = ParseRegex(this.definition.TotalAchievements);
-            return int.Parse(res["TotalAchievements"].Value);
-        }
-    }
+    public int TotalAchievements => int.Parse(Parse(this.definition.TotalAchievements, "TotalAchievements"));
 
     /// <summary>
     /// Number of achievement points for this character

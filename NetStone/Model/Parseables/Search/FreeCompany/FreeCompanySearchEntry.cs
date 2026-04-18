@@ -31,17 +31,17 @@ public class FreeCompanySearchEntry : LodestoneParseable
     /// <summary>
     /// Free company Id
     /// </summary>
-    public string? Id => ParseHrefId(this.definition.Id);
+    public string? Id => Parse(this.definition.Id);
 
     /// <summary>
     /// Home world of the FC
     /// </summary>
-    public string Server => ParseRegex(this.definition.Server)["World"].Value;
+    public string Server => Parse(this.definition.Server, "World");
 
     /// <summary>
     /// Data center of the FC
     /// </summary>
-    public string Datacenter => ParseRegex(this.definition.Server)["DC"].Value;
+    public string Datacenter => Parse(this.definition.Server, "DC");
 
     /// <summary>
     /// FC crest/icon
@@ -68,8 +68,7 @@ public class FreeCompanySearchEntry : LodestoneParseable
     /// <summary>
     /// Full text of active times
     /// </summary>
-    //ToDo: fix regex
-    public string ActiveText => ParseInnerText(this.definition.Active)[8..];
+    public string ActiveText => Parse(this.definition.Active);
 
     /// <summary>
     /// Active member count

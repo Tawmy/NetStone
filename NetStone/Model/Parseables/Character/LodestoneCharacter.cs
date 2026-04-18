@@ -57,17 +57,17 @@ public class LodestoneCharacter : LodestoneParseable
     /// <summary>
     /// Icon of current active ClassJob.
     /// </summary>
-    public string ActiveClassJobIcon => ParseInnerText(this.charDefinition.ActiveClassJob);
+    public string ActiveClassJobIcon => Parse(this.charDefinition.ActiveClassJob);
 
     /// <summary>
     /// Level of the current active ClassJob.
     /// </summary>
-    public int ActiveClassJobLevel => int.Parse(ParseInnerText(this.charDefinition.ActiveClassJobLevel).Remove(0, 6));
+    public int ActiveClassJobLevel => int.Parse(Parse(this.charDefinition.ActiveClassJobLevel));
 
     /// <summary>
     /// An URI to the avatar of the character.
     /// </summary>
-    public Uri? Avatar => ParseImageSource(this.charDefinition.Avatar);
+    public Uri Avatar => new(Parse(this.charDefinition.Avatar));
 
     /// <summary>
     /// The character bio/description.
@@ -83,12 +83,12 @@ public class LodestoneCharacter : LodestoneParseable
     /// <summary>
     /// The grand company of the character.
     /// </summary>
-    public string GrandCompanyName => ParseRegex(this.charDefinition.GrandCompany)["Name"].Value;
+    public string GrandCompanyName => Parse(this.charDefinition.GrandCompany);
 
     /// <summary>
     /// The grand company rank of the character.
     /// </summary>
-    public string GrandCompanyRank => ParseRegex(this.charDefinition.GrandCompany)["Rank"].Value;
+    public string GrandCompanyRank => Parse(this.charDefinition.GrandCompany, "Rank");
 
     /// <summary>
     /// The name of the guardian deity of the character.
@@ -98,7 +98,7 @@ public class LodestoneCharacter : LodestoneParseable
     /// <summary>
     /// The icon of the guardian deity of the character.
     /// </summary>
-    public Uri? GuardianDeityIcon => ParseImageSource(this.charDefinition.GuardianDeity.Icon);
+    public Uri GuardianDeityIcon => new(Parse(this.charDefinition.GuardianDeity.Icon));
 
     /// <summary>
     /// The name of the character.
@@ -113,36 +113,27 @@ public class LodestoneCharacter : LodestoneParseable
     /// <summary>
     /// An URI to the avatar of the character.
     /// </summary>
-    public Uri? Portrait => ParseImageSource(this.charDefinition.Portrait);
+    public Uri? Portrait => new(Parse(this.charDefinition.Portrait));
 
     /// <summary>
     /// The character PvPTeam info.
     /// </summary>
     public SocialGroup? PvPTeam => new SocialGroup(this.RootNode, this.charDefinition.PvPTeam).GetOptional();
-
     
-    private GroupCollection RaceClanGenderRegex => ParseRegex(this.charDefinition.RaceClanGender);
-
-    /// <summary>
-    /// String containing information on clan, race and gender
-    /// </summary>
-    [Obsolete("Use Race, Tribe or Gender")]
-    public string RaceClanGender => Parse(this.charDefinition.RaceClanGender);
-
     /// <summary>
     /// Race of the character
     /// </summary>
-    public string Race => this.RaceClanGenderRegex["Race"].Value;
+    public string Race => Parse(this.charDefinition.RaceClanGender, "Race");
     
     /// <summary>
     /// Tribe this character belongs to
     /// </summary>
-    public string Tribe => this.RaceClanGenderRegex["Tribe"].Value;
+    public string Tribe => Parse(this.charDefinition.RaceClanGender, "Tribe");
     
     /// <summary>
     /// Character representing the characters gender <see cref="FemaleChar"/> and <see cref="MaleChar"/>
     /// </summary>
-    public char Gender => this.RaceClanGenderRegex["Gender"].Value[0];
+    public char Gender => Parse(this.charDefinition.RaceClanGender, "Gender")[0];
 
     /// <summary>
     /// The server/world of the character.
@@ -162,7 +153,7 @@ public class LodestoneCharacter : LodestoneParseable
     /// <summary>
     /// The town of the character.
     /// </summary>
-    public Uri? TownIcon => ParseHref(this.charDefinition.Town.Icon);
+    public Uri TownIcon => new(Parse(this.charDefinition.Town.Icon));
 
     /// <summary>
     /// The character gear information.

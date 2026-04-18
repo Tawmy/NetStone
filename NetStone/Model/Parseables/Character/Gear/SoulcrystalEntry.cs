@@ -18,7 +18,7 @@ public class SoulcrystalEntry : LodestoneParseable, IOptionalParseable<Soulcryst
         this.definition = definition;
     }
 
-    //public Uri ItemDatabaseLink => ParseHref(this.definition.Name);
+    //public Uri ItemDatabaseLink => ParseHrefOld(this.definition.Name);
 
     /// <summary>
     /// Name of the item
@@ -28,7 +28,7 @@ public class SoulcrystalEntry : LodestoneParseable, IOptionalParseable<Soulcryst
     /// <summary>
     /// Icon of the item
     /// </summary>
-    public Uri? IconLink => ParseImageSource(this.definition.IconLink);
+    public Uri IconLink => new(Parse(this.definition.IconLink));
 
     /// <inheritdoc />
     public bool Exists => HasNode(this.definition.Name);

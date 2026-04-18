@@ -30,7 +30,7 @@ public class LodestoneCrossworldLinkshell : PaginatedIdResult<LodestoneCrossworl
     /// <summary>
     /// Name
     /// </summary>
-    public string Name => ParseDirectInnerText(this.definition.Name).Trim();
+    public string Name => Parse(this.definition.Name);
     
     /// <summary>
     /// Datacenter

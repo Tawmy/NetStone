@@ -36,7 +36,7 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Link to this piece's Eorzea DB page.
     /// </summary>
-    public Uri? ItemDatabaseLink => ParseHref(this.definition.DbLink);
+    public Uri? ItemDatabaseLink => ParseLodestoneUri(this.definition.DbLink);
 
     /// <summary>
     /// Name of this item.
@@ -46,7 +46,7 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Icon of this item.
     /// </summary>
-    public Uri? IconLink => ParseImageSource(this.definition.IconLink);
+    public Uri IconLink => new(Parse(this.definition.IconLink));
 
     /// <summary>
     /// Indicates if this item is high quality
@@ -61,32 +61,34 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Link to the glamoured item's Eorzea DB page.
     /// </summary>
-    public Uri? GlamourDatabaseLink => ParseHref(this.definition.MirageDbLink);
+    public Uri GlamourDatabaseLink => ParseLodestoneUri(this.definition.MirageDbLink);
 
     /// <summary>
     /// Name of the glamoured item.
     /// </summary>
     public string GlamourName => Parse(this.definition.MirageName);
-    
+
     /// <summary>
-    /// Link to the glamoured item's icon.
+    ///     Link to the glamoured item's icon.
     /// </summary>
-    public Uri? GlamourIconLink => ParseImageSource(this.definition.MirageIconLink);
+    public Uri? GlamourIconLink => Parse(this.definition.MirageIconLink) is { Length: > 0 } glamourItemLink
+        ? new Uri(glamourItemLink)
+        : null;
 
     /// <summary>
     /// Name of the dye applied to this item in slot 1.
     /// </summary>
-    public string Dye1Name => !string.IsNullOrEmpty(Dye1Color) ? Parse(this.definition.Stain1) : string.Empty;
+    public string? Dye1Name => !string.IsNullOrEmpty(Dye1Color) ? Parse(this.definition.Stain1) : null;
 
     /// <summary>
     /// Link to the Eorzea DB page of the dye applied to this item in slot 1.
     /// </summary>
-    public Uri? Dye1DatabaseLink => !string.IsNullOrEmpty(Dye1Color) ? ParseHref(this.definition.Stain1) : null;
+    public Uri? Dye1DatabaseLink => !string.IsNullOrEmpty(Dye1Color) ? new Uri(Parse(this.definition.Stain1DbLink)) : null;
 
     /// <summary>
     /// Hex color code of the dye applied to this item in slot 1.
     /// </summary>
-    public string Dye1Color => ParseDirectInnerText(this.definition.Stain1Color);
+    public string Dye1Color => Parse(this.definition.Stain1Color);
 
     /// <summary>
     /// Name of the dye applied to this item in slot 2.
@@ -123,26 +125,29 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
             }
 
             // Check whether link for dye 2 is set. If dye 1 doesn't exist, this will falsely parse as dye 1's link
-            var stain2db = ParseHref(this.definition.Stain2);
-            return stain2db ?? ParseHref(this.definition.Stain1);
+            var stain2db = Parse(this.definition.Stain2DbLink);
+
+            return !string.IsNullOrEmpty(stain2db) 
+                ? new Uri(stain2db) 
+                : new Uri(Parse(this.definition.Stain1DbLink));
         }
     }
 
     /// <summary>
     /// Hex color code of the dye applied to this item in slot 2.
     /// </summary>
-    public string Dye2Color => ParseDirectInnerText(this.definition.Stain2Color);
+    public string Dye2Color => Parse(this.definition.Stain2Color);
 
     /// <summary>
     /// Materia applied to this item.
     /// </summary>
     public string[] Materia => new[]
     {
-        ParseDirectInnerText(this.definition.Materia1),
-        ParseDirectInnerText(this.definition.Materia2),
-        ParseDirectInnerText(this.definition.Materia3),
-        ParseDirectInnerText(this.definition.Materia4),
-        ParseDirectInnerText(this.definition.Materia5),
+        Parse(this.definition.Materia1),
+        Parse(this.definition.Materia2),
+        Parse(this.definition.Materia3),
+        Parse(this.definition.Materia4),
+        Parse(this.definition.Materia5),
     };
 
     /// <summary>
@@ -153,14 +158,14 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Item level of this item.
     /// </summary>
-    public int ItemLevel => int.TryParse(Parse(definition.ItemLevel).Split(' ').LastOrDefault(), out var itemLevel)
+    public int ItemLevel => int.TryParse(Parse(this.definition.ItemLevel).Split(' ').LastOrDefault(), out var itemLevel)
         ? itemLevel
         : 0;
     
     /// <summary>
     /// Rarity of this item.
     /// </summary>
-    public string Rarity => ParseDirectInnerText(this.definition.Rarity);
+    public string Rarity => Parse(this.definition.Rarity);
 
     /// <summary>
     /// Indicating whether the item slot has an item equipped or not.

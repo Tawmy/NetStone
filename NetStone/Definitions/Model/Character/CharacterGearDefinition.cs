@@ -50,6 +50,12 @@ public class GearEntryDefinition
     public DefinitionsPack Stain1 { get; set; }
     
     /// <summary>
+    /// Link to Eorzea Database for dye 1 of the item
+    /// </summary>
+    [JsonProperty("STAIN_1_DB_LINK")]
+    public DefinitionsPack Stain1DbLink { get; set; }
+    
+    /// <summary>
     /// Color of dye 1 of the item
     /// </summary>
     [JsonProperty("STAIN_1_COLOR")]
@@ -60,6 +66,12 @@ public class GearEntryDefinition
     /// </summary>
     [JsonProperty("STAIN_2")]
     public DefinitionsPack Stain2 { get; set; }
+    
+    /// <summary>
+    /// Link to Eorzea Database for dye 2 of the item
+    /// </summary>
+    [JsonProperty("STAIN_2_DB_LINK")]
+    public DefinitionsPack Stain2DbLink { get; set; }
     
     /// <summary>
     /// Color of dye 2 of the item

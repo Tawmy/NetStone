@@ -25,17 +25,17 @@ public class SocialGroup : LodestoneParseable, IOptionalParseable<SocialGroup>
     /// <summary>
     /// Name of this social group.
     /// </summary>
-    public string Name => ParseInnerText(this.definition.Name, true);
+    public string Name => Parse(this.definition.Name);
 
     /// <summary>
     /// ID of this social group.
     /// </summary>
-    public string? Id => ParseHrefId(this.definition.Name);
+    public string? Id => Parse(this.definition.Name);
 
     /// <summary>
     /// Link to this social group's page.
     /// </summary>
-    public Uri? Link => ParseHref(this.definition.Name);
+    public Uri? Link => ParseLodestoneUri(this.definition.Name);
 
     /// <summary>
     /// <see cref="IconLayers"/> of this social group's icon.

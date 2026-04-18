@@ -33,7 +33,7 @@ public abstract class LodestoneParseable
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
     /// <returns>The needed node.</returns>
-    protected HtmlNode QueryNode(DefinitionsPack pack) => this.RootNode.QuerySelector(pack.Selector);
+    protected HtmlNode? QueryNode(DefinitionsPack pack) => this.RootNode.QuerySelector(pack.Selector);
 
     /// <summary>
     /// Query all ChildNodes of a <see cref="HtmlNode"/> via pack selector.
@@ -72,143 +72,32 @@ public abstract class LodestoneParseable
     protected bool HasNode(DefinitionsPack pack) => QueryNode(pack) != null;
 
     /// <summary>
-    /// Parse the InnerText via selector.
+    /// Parse via selector. Attribute and regex from selector will be used.
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
+    /// <param name="regexGroup">Group to select from regex with named groups.</param>
     /// <returns>InnerText of the node or empty string on parse error.</returns>
-    protected string Parse(DefinitionsPack pack)
+    protected string Parse(DefinitionsPack pack, string? regexGroup = null)
     {
+        var result = ParseInternal(pack);
+
         if (!string.IsNullOrEmpty(pack.Regex))
         {
-            var res = ParseRegex(pack);
-
-            if (res.Count != 0)
-                return res[1].Value;
+            result = ParseRegex(pack, result, regexGroup) ?? "";
         }
-
-        return ParseInnerText(pack);
+        
+        return result;
     }
 
     /// <summary>
-    /// Get the inner text of a node
+    /// Parse a Lodestone Uri. Parsed Uris are relative and will have the Lodestone base URL prepended.
     /// </summary>
-    /// <param name="pack">Definition of node</param>
-    /// <param name="noAttribute">Indicates to not parse attributes</param>
-    /// <returns>Text inside node</returns>
-    protected string ParseInnerText(DefinitionsPack pack, bool noAttribute = false)
-    {
-        var node = QueryNode(pack);
-
-        // Handle default attribute parsing
-        var text = !string.IsNullOrEmpty(pack.Attribute) && !noAttribute ? ParseAttribute(pack) : node?.InnerText;
-
-        return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : "";
-    }
-
-    /// <summary>
-    /// Get the inner html of a node
-    /// </summary>
-    /// <param name="pack">Definition of node</param>
-    /// <param name="noAttribute">Indicates to not parse attributes</param>
-    /// <param name="skipRegex">Indicates to not do regex parsing</param>
-    /// <returns>Text inside node</returns>
-    protected string ParseInnerHtml(DefinitionsPack pack, bool noAttribute = false, bool skipRegex = false)
-    {
-        var node = QueryNode(pack);
-
-        // Handle default attribute parsing
-        var text = !string.IsNullOrEmpty(pack.Attribute) && !noAttribute ? ParseAttribute(pack, skipRegex) : node?.InnerHtml;
-
-        return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : "";
-    }
-
-    /// <summary>
-    /// Parse the InnerText via selector, then parse out regex groups.
-    /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <returns>Matched Regex groups.</returns>
-    protected GroupCollection ParseRegex(DefinitionsPack pack)
-    {
-        var text = ParseInnerHtml(pack, skipRegex: true);
-
-        var regex = new Regex(pack.Regex ?? "");
-        var match = regex.Match(text);
-
-        return match.Groups;
-    }
-
-    /// <summary>
-    /// Parses the DirectInnerText via selector.
-    /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <param name="noAttribute">Determines if Attributes are parsed or not.</param>
+    /// <param name="pack"></param>
     /// <returns></returns>
-    protected string ParseDirectInnerText(DefinitionsPack pack, bool noAttribute = false)
+    protected Uri ParseLodestoneUri(DefinitionsPack pack)
     {
-        var node = QueryNode(pack);
-
-        var text = !string.IsNullOrEmpty(pack.Attribute) && !noAttribute
-            ? ParseAttribute(pack)
-            : node?.GetDirectInnerText();
-
-        return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : "";
-    }
-
-    /// <summary>
-    /// Parse tooltip attribute.
-    /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <returns>Parsed tooltip.</returns>
-    // TODO: Switch to attribute in pack
-    protected string ParseTooltip(DefinitionsPack pack)
-    {
-        var text = ParseAttribute(pack, "data-tooltip");
-
-        return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : "";
-    }
-
-    /// <summary>
-    /// Parse attribute from pack.
-    /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <param name="skipRegex">Indicates to skip regex parsing.</param>
-    /// <returns>Parsed attribute.</returns>
-    protected string? ParseAttribute(DefinitionsPack pack, bool skipRegex = false) =>
-        pack.Attribute == null ? null : ParseAttribute(pack, pack.Attribute, skipRegex);
-
-    /// <summary>
-    /// Parse specified attribute via selector from pack.
-    /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <param name="attribute">Attribute to parse.</param>
-    /// <param name="skipRegex">Indicates to skip regex parsing.</param>
-    /// <returns>Parsed attribute.</returns>
-    protected string? ParseAttribute(DefinitionsPack pack, string attribute, bool skipRegex = false)
-    {
-        var node = QueryNode(pack);
-
-        var nodeValue = node?.Attributes.FirstOrDefault(x => x.Name == attribute)?.Value;
-
-        return pack.Regex is not null && !skipRegex
-            ? Regex.Replace(nodeValue ?? string.Empty, pack.Regex, "$1")
-            : nodeValue;
-    }
-
-    /// <summary>
-    /// Parse href attribute on a node.
-    /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <param name="skipRegex">Indicates to skip regex parsing.</param>
-    /// <returns>Parsed href.</returns>
-    // TODO: Switch to attribute in pack
-    protected Uri? ParseHref(DefinitionsPack pack, bool skipRegex = false)
-    {
-        var href = ParseAttribute(pack, "href", skipRegex);
-
-        if (string.IsNullOrEmpty(href))
-            return null;
-
-        // Normalize href to have the lodestone URL in front
+        var href = ParseInternal(pack);
+        
         if (!href.StartsWith("http://", StringComparison.InvariantCulture) &&
             !href.StartsWith("https://", StringComparison.InvariantCulture))
         {
@@ -219,58 +108,74 @@ public abstract class LodestoneParseable
         return new Uri(href);
     }
 
-    /// <summary>
-    /// Parse out ID into string or null if node was not found.
-    /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <returns>Parsed ID.</returns>
-    protected string? ParseHrefId(DefinitionsPack pack)
+    private string ParseInternal(DefinitionsPack pack)
     {
-        var url = ParseHref(pack);
-
-        var link = url?.AbsoluteUri;
-
-        if (link == null)
-            return null;
-
-        // Trim last /
-        if (link.EndsWith("/"))
+        string? result;
+        if (!string.IsNullOrEmpty(pack.Attribute))
         {
-            link = link.Substring(0, link.Length - 1);
+            result = ParseAttribute(pack);
+        }
+        else if (!string.IsNullOrEmpty(pack.Regex))
+        {
+            result = ParseInnerHtml(pack);
+        }
+        else
+        {
+            result = ParseInnerText(pack);
         }
 
-        // Get only the ID
-        link = link.Substring(link.LastIndexOf("/", StringComparison.InvariantCulture) + 1);
-
-        return link;
+        return result ?? string.Empty;
     }
 
     /// <summary>
-    /// Parse out ID into ulong or null if node was not found.
+    /// Get the inner text of a node
     /// </summary>
-    /// <param name="pack">Definition of the node.</param>
-    /// <returns>Parsed ID.</returns>
-    protected ulong? ParseHrefIdULong(DefinitionsPack pack)
+    /// <param name="pack">Definition of node</param>
+    /// <returns>Text inside node</returns>
+    private string ParseInnerText(DefinitionsPack pack)
     {
-        var link = ParseHrefId(pack);
+        var node = QueryNode(pack);
 
-        if (link == null)
-            return null;
+        // Handle default attribute parsing
+        var text = node?.InnerText;
 
-        return ulong.Parse(link);
+        return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : string.Empty;
     }
 
     /// <summary>
-    /// Parse image source attribute.
+    /// Get the inner html of a node
+    /// </summary>
+    /// <param name="pack">Definition of node</param>
+    /// <returns>Text inside node</returns>
+    private string ParseInnerHtml(DefinitionsPack pack)
+    {
+        var node = QueryNode(pack);
+
+        // Handle default attribute parsing
+        var text = node?.InnerHtml;
+
+        return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : string.Empty;
+    }
+
+    /// <summary>
+    /// Parse attribute from pack.
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
-    /// <returns>Parsed image source.</returns>
-    // TODO: Switch to attribute in pack
-    protected Uri? ParseImageSource(DefinitionsPack pack)
-    {
-        var src = ParseAttribute(pack, "src");
+    /// <returns>Parsed attribute.</returns>
+    private string? ParseAttribute(DefinitionsPack pack) =>
+        pack.Attribute == null ? null : ParseAttribute(pack, pack.Attribute);
 
-        return string.IsNullOrEmpty(src) ? null : new Uri(src);
+    /// <summary>
+    /// Parse specified attribute via selector from pack.
+    /// </summary>
+    /// <param name="pack">Definition of the node.</param>
+    /// <param name="attribute">Attribute to parse.</param>
+    /// <returns>Parsed attribute.</returns>
+    private string? ParseAttribute(DefinitionsPack pack, string attribute)
+    {
+        var node = QueryNode(pack);
+
+        return node?.Attributes.FirstOrDefault(x => x.Name == attribute)?.Value;
     }
 
     /// <summary>
@@ -282,5 +187,25 @@ public abstract class LodestoneParseable
     {
         var res = Parse(pack);
         return DateTimeOffset.FromUnixTimeSeconds(long.Parse(res)).UtcDateTime;
+    }
+
+    private static string? ParseRegex(DefinitionsPack pack, string text, string? regexSelector = null)
+    {
+        var regex = new Regex(pack.Regex ?? "");
+        var match = regex.Match(text);
+
+        if (match.Groups.Count < 2)
+        {
+            return null;
+        }
+
+        if (pack.Type?.Equals("boolean", StringComparison.OrdinalIgnoreCase) == true)
+        {
+            return "true";
+        }
+
+        return regexSelector is not null 
+            ? match.Groups[regexSelector].Value 
+            : match.Groups[1].Value;
     }
 }
