@@ -8,6 +8,10 @@ namespace NetStone.Definitions.Model.Character;
 public class CharacterFreeCompany : ICharacterSocialGroupDefinition
 {
     ///<inheritdoc />
+    [JsonProperty("ID")]
+    public DefinitionsPack Id { get; set; }
+    
+    ///<inheritdoc />
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
 
@@ -22,6 +26,10 @@ public class CharacterFreeCompany : ICharacterSocialGroupDefinition
 public class CharacterPvPTeam : ICharacterSocialGroupDefinition
 {
     ///<inheritdoc />
+    [JsonProperty("ID")]
+    public DefinitionsPack Id { get; set; }
+    
+    ///<inheritdoc />
     [JsonProperty("NAME")]
     public DefinitionsPack Name { get; set; }
 
@@ -35,6 +43,11 @@ public class CharacterPvPTeam : ICharacterSocialGroupDefinition
 /// </summary>
 public interface ICharacterSocialGroupDefinition : IDefinition
 {
+    /// <summary>
+    /// Definition for the ID of the group
+    /// </summary>
+    DefinitionsPack Id { get; set; }
+    
     /// <summary>
     /// Definition for the name of the group
     /// </summary>
@@ -51,6 +64,12 @@ public interface ICharacterSocialGroupDefinition : IDefinition
 /// </summary>
 public class NameIconDefinition : IDefinition
 {
+    /// <summary>
+    /// ID
+    /// </summary>
+    [JsonProperty("ID")]
+    public DefinitionsPack Id { get; set; }
+    
     /// <summary>
     /// Name
     /// </summary>

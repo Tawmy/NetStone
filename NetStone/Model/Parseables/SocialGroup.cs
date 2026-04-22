@@ -20,7 +20,7 @@ public class SocialGroup : LodestoneParseable, IOptionalParseable<SocialGroup>
     /// <summary>
     /// Indicating whether this social group exists or not.
     /// </summary>
-    public bool Exists => this.Id != null;
+    public bool Exists => !string.IsNullOrEmpty(Id);
 
     /// <summary>
     /// Name of this social group.
@@ -30,12 +30,12 @@ public class SocialGroup : LodestoneParseable, IOptionalParseable<SocialGroup>
     /// <summary>
     /// ID of this social group.
     /// </summary>
-    public string? Id => Parse(this.definition.Name);
+    public string Id => Parse(this.definition.Id);
 
     /// <summary>
     /// Link to this social group's page.
     /// </summary>
-    public Uri? Link => ParseLodestoneUri(this.definition.Name);
+    public Uri? Link => ParseLodestoneUri(this.definition.Id);
 
     /// <summary>
     /// <see cref="IconLayers"/> of this social group's icon.

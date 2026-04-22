@@ -94,9 +94,14 @@ public abstract class LodestoneParseable
     /// </summary>
     /// <param name="pack"></param>
     /// <returns></returns>
-    protected Uri ParseLodestoneUri(DefinitionsPack pack)
+    protected Uri? ParseLodestoneUri(DefinitionsPack pack)
     {
         var href = ParseInternal(pack);
+
+        if (string.IsNullOrEmpty(href))
+        {
+            return null;
+        }
         
         if (!href.StartsWith("http://", StringComparison.InvariantCulture) &&
             !href.StartsWith("https://", StringComparison.InvariantCulture))

@@ -1,6 +1,5 @@
 ﻿using HtmlAgilityPack;
 using NetStone.Definitions.Model.Character;
-using NetStone.Search.FreeCompany;
 using System;
 
 namespace NetStone.Model.Parseables.Character.Gear;

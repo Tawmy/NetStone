@@ -83,7 +83,9 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Link to the Eorzea DB page of the dye applied to this item in slot 1.
     /// </summary>
-    public Uri? Dye1DatabaseLink => !string.IsNullOrEmpty(Dye1Color) ? new Uri(Parse(this.definition.Stain1DbLink)) : null;
+    public Uri? Dye1DatabaseLink => !string.IsNullOrEmpty(Dye1Color) 
+        ? ParseLodestoneUri(this.definition.Stain1DbLink) 
+        : null;
 
     /// <summary>
     /// Hex color code of the dye applied to this item in slot 1.
@@ -125,11 +127,8 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
             }
 
             // Check whether link for dye 2 is set. If dye 1 doesn't exist, this will falsely parse as dye 1's link
-            var stain2db = Parse(this.definition.Stain2DbLink);
-
-            return !string.IsNullOrEmpty(stain2db) 
-                ? new Uri(stain2db) 
-                : new Uri(Parse(this.definition.Stain1DbLink));
+            var stain2Db = ParseLodestoneUri(this.definition.Stain2DbLink);
+            return stain2Db ?? ParseLodestoneUri(this.definition.Stain1DbLink);
         }
     }
 

@@ -606,6 +606,9 @@
             Definitions for free company of character
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.CharacterFreeCompany.Id">
+            <inheritdoc />
+        </member>
         <member name="P:NetStone.Definitions.Model.Character.CharacterFreeCompany.Name">
             <inheritdoc />
         </member>
@@ -617,6 +620,9 @@
             Definitions for PvP team of character
             </summary>
         </member>
+        <member name="P:NetStone.Definitions.Model.Character.CharacterPvPTeam.Id">
+            <inheritdoc />
+        </member>
         <member name="P:NetStone.Definitions.Model.Character.CharacterPvPTeam.Name">
             <inheritdoc />
         </member>
@@ -626,6 +632,11 @@
         <member name="T:NetStone.Definitions.Model.Character.ICharacterSocialGroupDefinition">
             <summary>
             General definition of a social group
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.ICharacterSocialGroupDefinition.Id">
+            <summary>
+            Definition for the ID of the group
             </summary>
         </member>
         <member name="P:NetStone.Definitions.Model.Character.ICharacterSocialGroupDefinition.Name">
@@ -641,6 +652,11 @@
         <member name="T:NetStone.Definitions.Model.Character.NameIconDefinition">
             <summary>
             Generic definition for icon and name combination
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.NameIconDefinition.Id">
+            <summary>
+            ID
             </summary>
         </member>
         <member name="P:NetStone.Definitions.Model.Character.NameIconDefinition.Name">
