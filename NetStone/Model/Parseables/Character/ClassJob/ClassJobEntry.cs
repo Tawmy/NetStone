@@ -23,14 +23,19 @@ public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntr
     }
 
     /// <summary>
-    /// The name of this class and job combo.
+    /// The name of this class or job.
     /// </summary>
-    public string Name => Parse(this.definition.UnlockState);
+    public string Name => Parse(this.definition.Name);
+
+    /// <summary>
+    /// The name of this class and job combo as shown in its tooltip.
+    /// </summary>
+    public string Tooltip => Parse(this.definition.Tooltip);
 
     /// <summary>
     /// Value indicating whether this class has its job unlocked.
     /// </summary>
-    public bool IsJobUnlocked => this.Name.Contains("/");
+    public bool IsJobUnlocked => this.Tooltip.Contains("/");
 
     /// <summary>
     /// The level this class or job is at.

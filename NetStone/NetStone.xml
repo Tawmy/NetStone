@@ -354,9 +354,14 @@
             Level
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.Character.ClassJobEntryDefinition.UnlockState">
+        <member name="P:NetStone.Definitions.Model.Character.ClassJobEntryDefinition.Name">
             <summary>
-            Indicates if the job is unlocked
+            Name of the job
+            </summary>
+        </member>
+        <member name="P:NetStone.Definitions.Model.Character.ClassJobEntryDefinition.Tooltip">
+            <summary>
+            Tooltip text of the job
             </summary>
         </member>
         <member name="P:NetStone.Definitions.Model.Character.ClassJobEntryDefinition.IsSpecialized">
@@ -2674,7 +2679,12 @@
         </member>
         <member name="P:NetStone.Model.Parseables.Character.ClassJob.ClassJobEntry.Name">
             <summary>
-            The name of this class and job combo.
+            The name of this class or job.
+            </summary>
+        </member>
+        <member name="P:NetStone.Model.Parseables.Character.ClassJob.ClassJobEntry.Tooltip">
+            <summary>
+            The name of this class and job combo as shown in its tooltip.
             </summary>
         </member>
         <member name="P:NetStone.Model.Parseables.Character.ClassJob.ClassJobEntry.IsJobUnlocked">
