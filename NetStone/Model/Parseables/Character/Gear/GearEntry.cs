@@ -99,14 +99,14 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Name of the dye applied to this item in slot 2.
     /// </summary>
-    public string Dye2Name
+    public string? Dye2Name
     {
         get
         {
             if (string.IsNullOrEmpty(Dye2Color))
             {
                 // if dye 2 not set, return nothing
-                return string.Empty;
+                return null;
             }
 
             // Check whether name for dye 2 is set. If dye 1 doesn't exist, this will falsely parse as dye 1's name
