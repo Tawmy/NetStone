@@ -30,7 +30,7 @@ public class FacewearEntry : LodestoneParseable, IOptionalParseable<FacewearEntr
     /// <summary>
     /// Link to this facewear's Eorzea DB page.
     /// </summary>
-    public Uri? DbLink => ParseLodestoneUri(this.definition.DbLink);
+    public Uri? DbLink => TryParseLodestoneUri(this.definition.DbLink, out var dbLink) ? dbLink : null;
     
     /// <summary>
     /// Icon of this item.

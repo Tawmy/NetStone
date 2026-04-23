@@ -94,14 +94,9 @@ public abstract class LodestoneParseable
     /// </summary>
     /// <param name="pack"></param>
     /// <returns></returns>
-    protected Uri? ParseLodestoneUri(DefinitionsPack pack)
+    protected Uri ParseLodestoneUri(DefinitionsPack pack)
     {
         var href = ParseInternal(pack);
-
-        if (string.IsNullOrEmpty(href))
-        {
-            return null;
-        }
         
         if (!href.StartsWith("http://", StringComparison.InvariantCulture) &&
             !href.StartsWith("https://", StringComparison.InvariantCulture))
@@ -111,6 +106,25 @@ public abstract class LodestoneParseable
         }
 
         return new Uri(href);
+    }
+
+    /// <summary>
+    /// Try to parse a Lodestone Uri. Parsed Uris are relative and will have the Lodestone base URL prepended.
+    /// </summary>
+    /// <returns></returns>
+    protected bool TryParseLodestoneUri(DefinitionsPack pack, out Uri? result)
+    {
+        result = null;
+        try
+        {
+            result = ParseLodestoneUri(pack);
+        }
+        catch
+        {
+            // ignored
+        }
+
+        return result is not null;
     }
 
     private string ParseInternal(DefinitionsPack pack)

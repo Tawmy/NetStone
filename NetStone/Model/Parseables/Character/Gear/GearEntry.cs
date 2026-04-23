@@ -36,7 +36,9 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Link to this piece's Eorzea DB page.
     /// </summary>
-    public Uri? ItemDatabaseLink => ParseLodestoneUri(this.definition.DbLink);
+    public Uri? ItemDatabaseLink => TryParseLodestoneUri(this.definition.DbLink, out var itemDatabaseLink)
+        ? itemDatabaseLink
+        : null;
 
     /// <summary>
     /// Name of this item.
@@ -61,7 +63,9 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
     /// <summary>
     /// Link to the glamoured item's Eorzea DB page.
     /// </summary>
-    public Uri GlamourDatabaseLink => ParseLodestoneUri(this.definition.MirageDbLink);
+    public Uri? GlamourDatabaseLink => TryParseLodestoneUri(this.definition.MirageDbLink, out var glamourDatabaseLink)
+        ? glamourDatabaseLink
+        : null;
 
     /// <summary>
     /// Name of the glamoured item.
@@ -127,7 +131,7 @@ public class GearEntry : LodestoneParseable, IOptionalParseable<GearEntry>
             }
 
             // Check whether link for dye 2 is set. If dye 1 doesn't exist, this will falsely parse as dye 1's link
-            var stain2Db = ParseLodestoneUri(this.definition.Stain2DbLink);
+            TryParseLodestoneUri(this.definition.Stain2DbLink, out var stain2Db);
             return stain2Db ?? ParseLodestoneUri(this.definition.Stain1DbLink);
         }
     }

@@ -2183,6 +2183,12 @@
             <param name="pack"></param>
             <returns></returns>
         </member>
+        <member name="M:NetStone.Model.LodestoneParseable.TryParseLodestoneUri(NetStone.Definitions.DefinitionsPack,System.Uri@)">
+            <summary>
+            Try to parse a Lodestone Uri. Parsed Uris are relative and will have the Lodestone base URL prepended.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:NetStone.Model.LodestoneParseable.ParseInnerText(NetStone.Definitions.DefinitionsPack)">
             <summary>
             Get the inner text of a node
