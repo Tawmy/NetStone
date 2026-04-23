@@ -156,8 +156,22 @@
         </member>
         <member name="P:NetStone.Definitions.DefinitionsPack.Type">
             <summary>
-            Type of the attribute. Currently only booleans are treated specifically.
+            Type of the attribute. May be a single type or a map from regex capture group name to type.
+            Currently only booleans are treated specifically.
             </summary>
+        </member>
+        <member name="T:NetStone.Definitions.DefinitionType">
+            <summary>
+            Represents the <c>type</c> field of a <see cref="T:NetStone.Definitions.DefinitionsPack" />. Accepts either a single type or a map from regex
+            capture group name to type.
+            </summary>
+        </member>
+        <member name="M:NetStone.Definitions.DefinitionType.Get(System.String)">
+            <summary>
+            Resolves the type for a given regex capture group.
+            </summary>
+            <param name="groupName">Name of the regex capture group, or <c>null</c>.</param>
+            <returns>The type string, or <c>null</c> if no matching entry exists.</returns>
         </member>
         <member name="T:NetStone.Definitions.Model.Character.CharacterAchievementDefinition">
             <summary>

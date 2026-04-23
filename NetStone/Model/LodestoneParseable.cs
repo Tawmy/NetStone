@@ -218,7 +218,7 @@ public abstract class LodestoneParseable
             return null;
         }
 
-        if (pack.Type?.Equals("boolean", StringComparison.OrdinalIgnoreCase) == true)
+        if (pack.Type?.Get(regexSelector)?.Equals("boolean", StringComparison.OrdinalIgnoreCase) == true)
         {
             return "true";
         }

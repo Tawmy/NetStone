@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿﻿using System;
 using Newtonsoft.Json;
 
 namespace NetStone.Definitions;
@@ -35,8 +35,9 @@ public class DefinitionsPack
     public string? Attribute { get; set; }
     
     /// <summary>
-    /// Type of the attribute. Currently only booleans are treated specifically.
+    /// Type of the attribute. May be a single type or a map from regex capture group name to type.
+    /// Currently only booleans are treated specifically.
     /// </summary>
     [JsonProperty("type")]
-    public string? Type { get; set; }
+    public DefinitionType? Type { get; set; }
 }
