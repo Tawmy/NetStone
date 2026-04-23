@@ -28,12 +28,17 @@ public class CharacterAchievementPage : PaginatedIdResult<CharacterAchievementPa
     /// <summary>
     /// Total number of achievements
     /// </summary>
-    public int TotalAchievements => int.Parse(Parse(this.definition.TotalAchievements, "TotalAchievements"));
+    public int TotalAchievements => int.TryParse(Parse(this.definition.TotalAchievements, "TotalAchievements"),
+        out var totalAchievements)
+        ? totalAchievements
+        : 0;
 
     /// <summary>
     /// Number of achievement points for this character
     /// </summary>
-    public int AchievementPoints => int.Parse(Parse(this.definition.AchievementPoints));
+    public int AchievementPoints => int.TryParse(Parse(this.definition.AchievementPoints), out var achievementPoints) 
+        ? achievementPoints
+        : 0;
 
     /// <summary>
     /// Unlocked achievements for character
