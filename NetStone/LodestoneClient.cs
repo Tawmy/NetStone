@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using HtmlAgilityPack.CssSelectors.NetCore;
 using NetStone.Definitions;
 using NetStone.GameData;
 using NetStone.Model;
@@ -98,7 +100,7 @@ public class LodestoneClient : IDisposable
     /// <exception cref="HttpRequestException"> The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     /// <returns><see cref="LodestoneCharacter"/> class containing information about the character.</returns>
     public async Task<LodestoneCharacter?> GetCharacter(string id) => await GetParsed($"/lodestone/character/{id}/",
-        node => new LodestoneCharacter(this, node, this.Definitions, id));
+        node => new LodestoneCharacter(this, node, this.Definitions, id), lazyLoadTooltips: true);
 
     /// <summary>
     /// Get a characters' class/job information by its Lodestone ID.
@@ -250,9 +252,40 @@ public class LodestoneClient : IDisposable
     /// <param name="createParseable">Func creating the LodestoneParseable.</param>
     /// <param name="agent">The user agent to use for the request.</param>
     /// <exception cref="HttpRequestException"> The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <param name="lazyLoadTooltips">Indicates whether tooltips should be lazy loaded on the parsed HTML document.</param>
     /// <returns>The instantiated LodestoneParseable in case of success.</returns>
     private async Task<T?> GetParsed<T>(string url, Func<HtmlNode, T?> createParseable,
-        UserAgent agent = UserAgent.Desktop) where T : LodestoneParseable
+        UserAgent agent = UserAgent.Desktop, bool lazyLoadTooltips = false) where T : LodestoneParseable
+    {
+        var html = await FetchHtml(url, agent);
+        if (html is null) return null;
+
+        var doc = new HtmlDocument();
+        doc.LoadHtml(html);
+
+        if (lazyLoadTooltips) 
+            await LazyLoadTooltips(doc);
+
+        return createParseable.Invoke(doc.DocumentNode);
+    }
+
+    private async Task LazyLoadTooltips(HtmlDocument doc)
+    {
+        var tooltipElements = doc.DocumentNode.QuerySelectorAll("[data-lazy_load_url]").ToList();
+        var tooltipResults = await Task.WhenAll(tooltipElements.Select(async node =>
+        {
+            var tooltipUrl = node.GetAttributeValue("data-lazy_load_url", string.Empty);
+            return !string.IsNullOrEmpty(tooltipUrl) ? (node, await FetchHtml(tooltipUrl)) : (node, null);
+        }));
+
+        foreach (var (el, tooltipHtml) in tooltipResults)
+        {
+            if (!string.IsNullOrEmpty(tooltipHtml))
+                el.InnerHtml += tooltipHtml;
+        }
+    }
+
+    private async Task<string?> FetchHtml(string url, UserAgent agent = UserAgent.Desktop)
     {
         var request = new HttpRequestMessage(HttpMethod.Get, url);
 
@@ -273,10 +306,7 @@ public class LodestoneClient : IDisposable
         if (response.StatusCode == HttpStatusCode.NotFound)
             return null;
 
-        var doc = new HtmlDocument();
-        doc.LoadHtml(await response.Content.ReadAsStringAsync());
-
-        return createParseable.Invoke(doc.DocumentNode);
+        return await response.Content.ReadAsStringAsync();
     }
 
     /// <inheritdoc />

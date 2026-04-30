@@ -2018,7 +2018,7 @@
             <exception cref="T:System.Net.Http.HttpRequestException"> The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
             <returns><see cref="T:NetStone.Model.Parseables.Search.FreeCompany.FreeCompanySearchPage"/> containing search results.</returns>
         </member>
-        <member name="M:NetStone.LodestoneClient.GetParsed``1(System.String,System.Func{HtmlAgilityPack.HtmlNode,``0},NetStone.UserAgent)">
+        <member name="M:NetStone.LodestoneClient.GetParsed``1(System.String,System.Func{HtmlAgilityPack.HtmlNode,``0},NetStone.UserAgent,System.Boolean)">
             <summary>
             Get the instantiated LodestoneParseable if the request succeeded, or null in case of StatusCode.NotFound.
             </summary>
@@ -2027,6 +2027,7 @@
             <param name="createParseable">Func creating the LodestoneParseable.</param>
             <param name="agent">The user agent to use for the request.</param>
             <exception cref="T:System.Net.Http.HttpRequestException"> The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+            <param name="lazyLoadTooltips">Indicates whether tooltips should be lazy loaded on the parsed HTML document.</param>
             <returns>The instantiated LodestoneParseable in case of success.</returns>
         </member>
         <member name="M:NetStone.LodestoneClient.Dispose">
