@@ -8,22 +8,22 @@ namespace NetStone.Model.Parseables.Character.Collectable;
 /// </summary>
 public class CharacterCollectableEntry : LodestoneParseable
 {
-    private readonly CharacterCollectableDefinition definition;
+    private readonly ICharacterCollectableDefinition _definition;
 
     /// <summary>
     /// Constructs one collectable entry
     /// </summary>
     /// <param name="rootNode">Root node for entry</param>
     /// <param name="definition">Parse definition</param>
-    public CharacterCollectableEntry(HtmlNode rootNode, CharacterCollectableDefinition definition) : base(rootNode)
+    public CharacterCollectableEntry(HtmlNode rootNode, ICharacterCollectableDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// The name of this collectable.
     /// </summary>
-    public string Name => Parse(this.definition.GetDefinitions().Name);
+    public string Name => Parse(this._definition.GetDefinitions().Name);
 
     /// <summary>
     /// The string representation of this collectable.

@@ -12,7 +12,7 @@ namespace NetStone.Model.Parseables.Search.Character;
 public class CharacterSearchPage : PaginatedSearchResult<CharacterSearchPage, CharacterSearchEntry,
     CharacterSearchEntryDefinition, CharacterSearchQuery>
 {
-    private readonly LodestoneClient client;
+    private readonly LodestoneClient _client;
 
     /// <summary>
     /// Constructs character search results
@@ -26,7 +26,7 @@ public class CharacterSearchPage : PaginatedSearchResult<CharacterSearchPage, Ch
                                CharacterSearchQuery currentQuery) 
         : base(rootNode, pageDefinition, client.SearchCharacter, currentQuery)
     {
-        this.client = client;
+        this._client = client;
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public class CharacterSearchPage : PaginatedSearchResult<CharacterSearchPage, Ch
         var parsedResults = new CharacterSearchEntry[container.Length];
         for (var i = 0; i < parsedResults.Length; i++)
         {
-            parsedResults[i] = new CharacterSearchEntry(this.client, container[i], this.PageDefinition.Entry);
+            parsedResults[i] = new CharacterSearchEntry(this._client, container[i], this.PageDefinition.Entry);
         }
 
         return parsedResults;

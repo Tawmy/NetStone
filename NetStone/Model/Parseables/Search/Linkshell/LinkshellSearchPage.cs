@@ -12,7 +12,7 @@ namespace NetStone.Model.Parseables.Search.Linkshell;
 public class LinkshellSearchPage : PaginatedSearchResult<LinkshellSearchPage, LinkshellSearchEntry,
     LinkshellSearchEntryDefinition, LinkshellSearchQuery>
 {
-    private readonly LodestoneClient client;
+    private readonly LodestoneClient _client;
 
     /// <summary>
     /// Constructs character search results
@@ -26,7 +26,7 @@ public class LinkshellSearchPage : PaginatedSearchResult<LinkshellSearchPage, Li
                                LinkshellSearchQuery currentQuery) 
         : base(rootNode, pageDefinition, client.SearchLinkshell, currentQuery)
     {
-        this.client = client;
+        this._client = client;
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public class LinkshellSearchPage : PaginatedSearchResult<LinkshellSearchPage, Li
         var parsedResults = new LinkshellSearchEntry[container.Length];
         for (var i = 0; i < parsedResults.Length; i++)
         {
-            parsedResults[i] = new LinkshellSearchEntry(this.client, container[i], this.PageDefinition.Entry);
+            parsedResults[i] = new LinkshellSearchEntry(this._client, container[i], this.PageDefinition.Entry);
         }
         return parsedResults;
     }

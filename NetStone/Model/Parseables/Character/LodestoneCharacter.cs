@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using NetStone.Definitions;
@@ -26,13 +25,13 @@ public class LodestoneCharacter : LodestoneParseable
     /// </summary>
     public const char MaleChar = '\u2642';
     
-    private readonly LodestoneClient client;
+    private readonly LodestoneClient _client;
 
-    private readonly string charId;
+    private readonly string _charId;
 
-    private readonly CharacterDefinition charDefinition;
-    private readonly CharacterGearDefinition gearDefinition;
-    private readonly CharacterAttributesDefinition attributesDefinition;
+    private readonly CharacterDefinition _charDefinition;
+    private readonly CharacterGearDefinition _gearDefinition;
+    private readonly CharacterAttributesDefinition _attributesDefinition;
 
     /// <summary>
     /// Container class for a parseable character page.
@@ -44,12 +43,12 @@ public class LodestoneCharacter : LodestoneParseable
     public LodestoneCharacter(LodestoneClient client, HtmlNode rootNode, DefinitionsContainer container, string charId)
         : base(rootNode)
     {
-        this.client = client;
-        this.charId = charId;
+        this._client = client;
+        this._charId = charId;
 
-        this.charDefinition = container.Character;
-        this.gearDefinition = container.Gear;
-        this.attributesDefinition = container.Attributes;
+        this._charDefinition = container.Character;
+        this._gearDefinition = container.Gear;
+        this._attributesDefinition = container.Attributes;
     }
 
     #region Properties
@@ -57,113 +56,113 @@ public class LodestoneCharacter : LodestoneParseable
     /// <summary>
     /// Icon of current active ClassJob.
     /// </summary>
-    public string ActiveClassJobIcon => Parse(this.charDefinition.ActiveClassJob);
+    public string ActiveClassJobIcon => Parse(this._charDefinition.ActiveClassJob);
 
     /// <summary>
     /// Level of the current active ClassJob.
     /// </summary>
-    public int ActiveClassJobLevel => int.Parse(Parse(this.charDefinition.ActiveClassJobLevel));
+    public int ActiveClassJobLevel => int.Parse(Parse(this._charDefinition.ActiveClassJobLevel));
 
     /// <summary>
     /// An URI to the avatar of the character.
     /// </summary>
-    public Uri Avatar => new(Parse(this.charDefinition.Avatar));
+    public Uri Avatar => new(Parse(this._charDefinition.Avatar));
 
     /// <summary>
     /// The character bio/description.
     /// </summary>
-    public string Bio => Parse(this.charDefinition.Bio);
+    public string Bio => Parse(this._charDefinition.Bio);
 
     /// <summary>
     /// The character FreeCompany info.
     /// </summary>
     public SocialGroup? FreeCompany =>
-        new FreeCompanySocialGroup(this.client, this.RootNode, this.charDefinition.FreeCompany).GetOptional();
+        new FreeCompanySocialGroup(this._client, this.RootNode, this._charDefinition.FreeCompany).GetOptional();
 
     /// <summary>
     /// The grand company of the character.
     /// </summary>
-    public string GrandCompanyName => Parse(this.charDefinition.GrandCompany);
+    public string GrandCompanyName => Parse(this._charDefinition.GrandCompany);
 
     /// <summary>
     /// The grand company rank of the character.
     /// </summary>
-    public string GrandCompanyRank => Parse(this.charDefinition.GrandCompany, "Rank");
+    public string GrandCompanyRank => Parse(this._charDefinition.GrandCompany, "Rank");
 
     /// <summary>
     /// The name of the guardian deity of the character.
     /// </summary>
-    public string GuardianDeityName => Parse(this.charDefinition.GuardianDeity.Name);
+    public string GuardianDeityName => Parse(this._charDefinition.GuardianDeity.Name);
 
     /// <summary>
     /// The icon of the guardian deity of the character.
     /// </summary>
-    public Uri GuardianDeityIcon => new(Parse(this.charDefinition.GuardianDeity.Icon));
+    public Uri GuardianDeityIcon => new(Parse(this._charDefinition.GuardianDeity.Icon));
 
     /// <summary>
     /// The name of the character.
     /// </summary>
-    public string Name => Parse(this.charDefinition.Name);
+    public string Name => Parse(this._charDefinition.Name);
 
     /// <summary>
     /// The nameday of the character.
     /// </summary>
-    public string Nameday => Parse(this.charDefinition.Nameday);
+    public string Nameday => Parse(this._charDefinition.Nameday);
 
     /// <summary>
     /// An URI to the avatar of the character.
     /// </summary>
-    public Uri? Portrait => new(Parse(this.charDefinition.Portrait));
+    public Uri Portrait => new(Parse(this._charDefinition.Portrait));
 
     /// <summary>
     /// The character PvPTeam info.
     /// </summary>
-    public SocialGroup? PvPTeam => new SocialGroup(this.RootNode, this.charDefinition.PvPTeam).GetOptional();
+    public SocialGroup? PvPTeam => new SocialGroup(this.RootNode, this._charDefinition.PvPTeam).GetOptional();
     
     /// <summary>
     /// Race of the character
     /// </summary>
-    public string Race => Parse(this.charDefinition.RaceClanGender, "Race");
+    public string Race => Parse(this._charDefinition.RaceClanGender, "Race");
     
     /// <summary>
     /// Tribe this character belongs to
     /// </summary>
-    public string Tribe => Parse(this.charDefinition.RaceClanGender, "Tribe");
+    public string Tribe => Parse(this._charDefinition.RaceClanGender, "Tribe");
     
     /// <summary>
     /// Character representing the characters gender <see cref="FemaleChar"/> and <see cref="MaleChar"/>
     /// </summary>
-    public char Gender => Parse(this.charDefinition.RaceClanGender, "Gender")[0];
+    public char Gender => Parse(this._charDefinition.RaceClanGender, "Gender")[0];
 
     /// <summary>
     /// The server/world of the character.
     /// </summary>
-    public string Server => Parse(this.charDefinition.Server);
+    public string Server => Parse(this._charDefinition.Server);
 
     /// <summary>
     /// The title of the character.
     /// </summary>
-    public string Title => Parse(this.charDefinition.Title);
+    public string Title => Parse(this._charDefinition.Title);
 
     /// <summary>
     /// The town of the character.
     /// </summary>
-    public string TownName => Parse(this.charDefinition.Town.Name);
+    public string TownName => Parse(this._charDefinition.Town.Name);
 
     /// <summary>
     /// The town of the character.
     /// </summary>
-    public Uri TownIcon => new(Parse(this.charDefinition.Town.Icon));
+    public Uri TownIcon => new(Parse(this._charDefinition.Town.Icon));
 
     /// <summary>
     /// The character gear information.
     /// </summary>
-    public CharacterGear Gear => new(this.client, this.RootNode, this.gearDefinition);
+    public CharacterGear Gear => new(this._client, this.RootNode, this._gearDefinition);
 
     /// <summary>
     /// The character attribute information.
     /// </summary>
-    public CharacterAttributes Attributes => new(this.RootNode, this.attributesDefinition);
+    public CharacterAttributes Attributes => new(this.RootNode, this._attributesDefinition);
 
     #endregion
 
@@ -171,26 +170,26 @@ public class LodestoneCharacter : LodestoneParseable
     /// Fetch more information about this character's classes and jobs(level, exp, unlocked, etc.).
     /// </summary>
     /// <returns><see cref="CharacterClassJob"/> object holding this information.</returns>
-    public async Task<CharacterClassJob?> GetClassJobInfo() => await this.client.GetCharacterClassJob(this.charId);
+    public async Task<CharacterClassJob?> GetClassJobInfo() => await this._client.GetCharacterClassJob(this._charId);
 
     /// <summary>
     /// Fetch more information about this character's unlocked achievements.
     /// </summary>
     /// <returns><see cref="CharacterAchievementPage"/> object holding this information.</returns>
     public async Task<CharacterAchievementPage?> GetAchievement() =>
-        await this.client.GetCharacterAchievement(this.charId);
+        await this._client.GetCharacterAchievement(this._charId);
 
     /// <summary>
     /// Fetch more information about this character's unlocked mounts.
     /// </summary>
     /// <returns><see cref="CharacterCollectable"/> object holding this information.</returns>
-    public async Task<CharacterCollectable?> GetMounts() => await this.client.GetCharacterMount(this.charId);
+    public async Task<CharacterCollectable?> GetMounts() => await this._client.GetCharacterMount(this._charId);
 
     /// <summary>
     /// Fetch more information about this character's unlocked minions.
     /// </summary>
     /// <returns><see cref="CharacterCollectable"/> object holding this information.</returns>
-    public async Task<CharacterCollectable?> GetMinions() => await this.client.GetCharacterMinion(this.charId);
+    public async Task<CharacterCollectable?> GetMinions() => await this._client.GetCharacterMinion(this._charId);
 
     /// <summary>
     /// String representation of this character.

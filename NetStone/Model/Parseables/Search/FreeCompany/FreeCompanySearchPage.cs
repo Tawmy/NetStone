@@ -12,7 +12,7 @@ namespace NetStone.Model.Parseables.Search.FreeCompany;
 public class FreeCompanySearchPage : PaginatedSearchResult<FreeCompanySearchPage, 
     FreeCompanySearchEntry,FreeCompanySearchEntryDefinition, FreeCompanySearchQuery>
 {
-    private readonly LodestoneClient client;
+    private readonly LodestoneClient _client;
 
     /// <summary>
     /// Constructs Free Company Search results
@@ -26,7 +26,7 @@ public class FreeCompanySearchPage : PaginatedSearchResult<FreeCompanySearchPage
                                  FreeCompanySearchQuery currentQuery) 
         : base(rootNode, pageDefinition, client.SearchFreeCompany, currentQuery)
     {
-        this.client = client;
+        this._client = client;
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public class FreeCompanySearchPage : PaginatedSearchResult<FreeCompanySearchPage
         var parsedResults = new FreeCompanySearchEntry[container.Length];
         for (var i = 0; i < parsedResults.Length; i++)
         {
-            parsedResults[i] = new FreeCompanySearchEntry(this.client, container[i], this.PageDefinition.Entry);
+            parsedResults[i] = new FreeCompanySearchEntry(this._client, container[i], this.PageDefinition.Entry);
         }
         return parsedResults;
     }

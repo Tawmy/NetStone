@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using NetStone.Definitions.Model.Character;
 
 namespace NetStone.Model.Parseables.Character.ClassJob;
@@ -10,7 +8,7 @@ namespace NetStone.Model.Parseables.Character.ClassJob;
 /// </summary>
 public class ClassJobBozja : LodestoneParseable, IOptionalParseable<ClassJobBozja>
 {
-	private readonly ClassJobBozjaDefinition definition;
+	private readonly ClassJobBozjaDefinition _definition;
 
 	/// <summary>
 	/// Constructs a new class entry
@@ -19,30 +17,30 @@ public class ClassJobBozja : LodestoneParseable, IOptionalParseable<ClassJobBozj
 	/// <param name="definition">Parser definition</param>
 	public ClassJobBozja(HtmlNode rootNode, ClassJobBozjaDefinition definition) : base(rootNode)
 	{
-		this.definition = definition;
+		this._definition = definition;
 	}
 
 	/// <summary>
 	/// The name of this class and job combo.
 	/// </summary>
-	public string Name => Parse(this.definition.NAME);
+	public string Name => Parse(this._definition.Name);
 
 	/// <summary>
 	/// The level this class or job is at.
 	/// </summary>
-	public int Level => int.TryParse(Parse(this.definition.LEVEL), out var levelOut) ? levelOut : 0 ;
+	public int Level => int.TryParse(Parse(this._definition.Level), out var levelOut) ? levelOut : 0 ;
 	
 	/// <summary>
 	/// The amount of current achieved EXP on this level.
 	/// </summary>
-	public int MettleCurrent => int.TryParse(Parse(this.definition.METTLE, "Mettle").Replace(",", ""), out var mettleCurrent)
+	public int MettleCurrent => int.TryParse(Parse(this._definition.Mettle, "Mettle").Replace(",", ""), out var mettleCurrent)
 		? mettleCurrent
 		: 0;
 	
 	/// <summary>
 	/// The amount of EXP to be reached to gain the next level.
 	/// </summary>
-	public int MettleMax => int.TryParse(Parse(this.definition.METTLE, "MettleNextRank").Replace(",", ""), out var mettleMax)
+	public int MettleMax => int.TryParse(Parse(this._definition.Mettle, "MettleNextRank").Replace(",", ""), out var mettleMax)
 		? mettleMax
 		: 0;
 

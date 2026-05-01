@@ -8,29 +8,29 @@ namespace NetStone.Model.Parseables.FreeCompany;
 /// </summary>
 public class FreeCompanyEstate : LodestoneParseable, IOptionalParseable<FreeCompanyEstate>
 {
-    private readonly EstateDefinition definition;
+    private readonly EstateDefinition _definition;
 
     ///<inheritdoc />
     public FreeCompanyEstate(HtmlNode rootNode, EstateDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Name of the estate
     /// </summary>
-    public string Name => Parse(this.definition.Name);
+    public string Name => Parse(this._definition.Name);
 
     /// <summary>
     /// The greeting phrase for this estate
     /// </summary>
-    public string Greeting => Parse(this.definition.Greeting);
+    public string Greeting => Parse(this._definition.Greeting);
 
     /// <summary>
     /// The plot where the estate is built
     /// </summary>
-    public string Plot => Parse(this.definition.Plot);
+    public string Plot => Parse(this._definition.Plot);
 
     ///<inheritdoc />
-    public bool Exists => !HasNode(this.definition.NoEstate);
+    public bool Exists => !HasNode(this._definition.NoEstate);
 }

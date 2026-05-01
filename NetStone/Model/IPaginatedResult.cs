@@ -74,9 +74,9 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
     /// </summary>
     protected readonly PagedDefinition<TEntryDef> PageDefinition;
 
-    private readonly TRequest request;
+    private readonly TRequest _request;
     
-    private readonly Func<TRequest, int, Task<TPage?>> nextPageFunc;
+    private readonly Func<TRequest, int, Task<TPage?>> _nextPageFunc;
 
     /// <summary>
     /// 
@@ -88,8 +88,8 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
     protected PaginatedResult(HtmlNode rootNode, PagedDefinition<TEntryDef> pageDefinition,Func<TRequest, int, Task<TPage?>> nextPageFunc, TRequest request) : base(rootNode)
     {
         this.PageDefinition = pageDefinition;
-        this.request = request;
-        this.nextPageFunc = nextPageFunc;
+        this._request = request;
+        this._nextPageFunc = nextPageFunc;
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
     /// </summary>
     public bool HasResults => this.PageDefinition.NoResultsFound is null || !HasNode(this.PageDefinition.NoResultsFound);
     
-    private TEntry[]? parsedResults;
+    private TEntry[]? _parsedResults;
     
     /// <summary>
     /// List of members
@@ -107,8 +107,8 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
         get
         {
             if (!this.HasResults) return Array.Empty<TEntry>();
-            this.parsedResults ??= ParseResults();
-            return this.parsedResults;
+            this._parsedResults ??= ParseResults();
+            return this._parsedResults;
         }
     }
 
@@ -117,7 +117,7 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
     /// </summary>
     protected abstract TEntry[] ParseResults();
     
-    private int? currentPageVal;
+    private int? _currentPageVal;
 
     ///<inheritdoc />
     public int CurrentPage
@@ -126,14 +126,14 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
         {
             if (!this.HasResults)
                 return 0;
-            if (!this.currentPageVal.HasValue)
+            if (!this._currentPageVal.HasValue)
                 ParsePagesCount();
 
-            return this.currentPageVal!.Value;
+            return this._currentPageVal!.Value;
         }
     }
 
-    private int? numPagesVal;
+    private int? _numPagesVal;
 
     /// <inheritdoc/>
     public int NumPages
@@ -142,16 +142,16 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
         {
             if (!this.HasResults)
                 return 0;
-            if (!this.numPagesVal.HasValue)
+            if (!this._numPagesVal.HasValue)
                 ParsePagesCount();
 
-            return this.numPagesVal!.Value;
+            return this._numPagesVal!.Value;
         }
     }
     private void ParsePagesCount()
     {
-        this.currentPageVal = int.Parse(Parse(this.PageDefinition.PageInfo, "CurrentPage"));
-        this.numPagesVal = int.Parse(Parse(this.PageDefinition.PageInfo, "NumPages"));
+        this._currentPageVal = int.Parse(Parse(this.PageDefinition.PageInfo, "CurrentPage"));
+        this._numPagesVal = int.Parse(Parse(this.PageDefinition.PageInfo, "NumPages"));
     }
     
     /// <inheritdoc />
@@ -163,6 +163,6 @@ public abstract class PaginatedSearchResult<TPage, TEntry, TEntryDef, TQuery>
         if (this.CurrentPage == this.NumPages)
             return null;
 
-        return await this.nextPageFunc(this.request, this.CurrentPage + 1);
+        return await this._nextPageFunc(this._request, this.CurrentPage + 1);
     }
 }

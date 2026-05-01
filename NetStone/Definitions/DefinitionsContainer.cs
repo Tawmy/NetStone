@@ -49,12 +49,12 @@ public abstract class DefinitionsContainer : IDisposable
     /// <summary>
     /// Definitions for a character's mounts
     /// </summary>
-    public CharacterCollectableDefinition Mount { get; set; }
+    public ICharacterCollectableDefinition Mount { get; set; }
 
     /// <summary>
     /// Definitions for a character's minions
     /// </summary>
-    public CharacterCollectableDefinition Minion { get; set; }
+    public ICharacterCollectableDefinition Minion { get; set; }
 
     /// <summary>
     /// Definitions for Free Company

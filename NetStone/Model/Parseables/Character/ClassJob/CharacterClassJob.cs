@@ -9,7 +9,7 @@ namespace NetStone.Model.Parseables.Character.ClassJob;
 /// </summary>
 public class CharacterClassJob : LodestoneParseable
 {
-    private readonly CharacterClassJobDefinition definition;
+    private readonly CharacterClassJobDefinition _definition;
 
     /// <summary>
     /// Creates ClassJobs data for the character represented by the Lodestone page
@@ -18,183 +18,183 @@ public class CharacterClassJob : LodestoneParseable
     /// <param name="definition">Definition to parse ClassJobs</param>
     public CharacterClassJob(HtmlNode rootNode, CharacterClassJobDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Information about the Eureka class.
     /// </summary>
-    public ClassJobEureka? Eureka => new ClassJobEureka(this.RootNode, this.definition.Eureka).GetOptional();
+    public ClassJobEureka? Eureka => new ClassJobEureka(this.RootNode, this._definition.Eureka).GetOptional();
 
     /// <summary>
     /// Information about the Bozja class.
     /// </summary>
-    public ClassJobBozja? Bozja => new ClassJobBozja(this.RootNode, this.definition.Bozja).GetOptional();
+    public ClassJobBozja? Bozja => new ClassJobBozja(this.RootNode, this._definition.Bozja).GetOptional();
 
     /// <summary>
     /// Information about the Paladin class.
     /// </summary>
-    public ClassJobEntry Paladin => new(this.RootNode, this.definition.Paladin);
+    public ClassJobEntry Paladin => new(this.RootNode, this._definition.Paladin);
 
     /// <summary>
     /// Information about the Warrior class.
     /// </summary>
-    public ClassJobEntry Warrior => new(this.RootNode, this.definition.Warrior);
+    public ClassJobEntry Warrior => new(this.RootNode, this._definition.Warrior);
 
     /// <summary>
     /// Information about the Dark Knight class.
     /// </summary>
-    public ClassJobEntry DarkKnight => new(this.RootNode, this.definition.DarkKnight);
+    public ClassJobEntry DarkKnight => new(this.RootNode, this._definition.DarkKnight);
 
     /// <summary>
     /// Information about the Gunbreaker class.
     /// </summary>
-    public ClassJobEntry Gunbreaker => new(this.RootNode, this.definition.Gunbreaker);
+    public ClassJobEntry Gunbreaker => new(this.RootNode, this._definition.Gunbreaker);
 
     /// <summary>
     /// Information about the Monk class.
     /// </summary>
-    public ClassJobEntry Monk => new(this.RootNode, this.definition.Monk);
+    public ClassJobEntry Monk => new(this.RootNode, this._definition.Monk);
 
     /// <summary>
     /// Information about the Dragoon class.
     /// </summary>
-    public ClassJobEntry Dragoon => new(this.RootNode, this.definition.Dragoon);
+    public ClassJobEntry Dragoon => new(this.RootNode, this._definition.Dragoon);
 
     /// <summary>
     /// Information about the Ninja class.
     /// </summary>
-    public ClassJobEntry Ninja => new(this.RootNode, this.definition.Ninja);
+    public ClassJobEntry Ninja => new(this.RootNode, this._definition.Ninja);
 
     /// <summary>
     /// Information about the Samurai class.
     /// </summary>
-    public ClassJobEntry Samurai => new(this.RootNode, this.definition.Samurai);
+    public ClassJobEntry Samurai => new(this.RootNode, this._definition.Samurai);
 
     /// <summary>
     /// Information about the Reaper class.
     /// </summary>
-    public ClassJobEntry Reaper => new(this.RootNode, this.definition.Reaper);
+    public ClassJobEntry Reaper => new(this.RootNode, this._definition.Reaper);
 
     /// <summary>
     /// Information about the Viper class.
     /// </summary>
-    public ClassJobEntry Viper => new(this.RootNode, this.definition.Viper);
+    public ClassJobEntry Viper => new(this.RootNode, this._definition.Viper);
 
     /// <summary>
     /// Information about the WhiteMage class.
     /// </summary>
-    public ClassJobEntry WhiteMage => new(this.RootNode, this.definition.Whitemage);
+    public ClassJobEntry WhiteMage => new(this.RootNode, this._definition.Whitemage);
 
     /// <summary>
     /// Information about the Scholar class.
     /// </summary>
-    public ClassJobEntry Scholar => new(this.RootNode, this.definition.Scholar);
+    public ClassJobEntry Scholar => new(this.RootNode, this._definition.Scholar);
 
     /// <summary>
     /// Information about the Astrologian class.
     /// </summary>
-    public ClassJobEntry Astrologian => new(this.RootNode, this.definition.Astrologian);
+    public ClassJobEntry Astrologian => new(this.RootNode, this._definition.Astrologian);
 
     /// <summary>
     /// Information about the Sage class.
     /// </summary>
-    public ClassJobEntry Sage => new(this.RootNode, this.definition.Sage);
+    public ClassJobEntry Sage => new(this.RootNode, this._definition.Sage);
 
     /// <summary>
     /// Information about the Bard class.
     /// </summary>
-    public ClassJobEntry Bard => new(this.RootNode, this.definition.Bard);
+    public ClassJobEntry Bard => new(this.RootNode, this._definition.Bard);
 
     /// <summary>
     /// Information about the Machinist class.
     /// </summary>
-    public ClassJobEntry Machinist => new(this.RootNode, this.definition.Machinist);
+    public ClassJobEntry Machinist => new(this.RootNode, this._definition.Machinist);
 
     /// <summary>
     /// Information about the Dancer class.
     /// </summary>
-    public ClassJobEntry Dancer => new(this.RootNode, this.definition.Dancer);
+    public ClassJobEntry Dancer => new(this.RootNode, this._definition.Dancer);
 
     /// <summary>
     /// Information about the BlackMage class.
     /// </summary>
-    public ClassJobEntry BlackMage => new(this.RootNode, this.definition.Blackmage);
+    public ClassJobEntry BlackMage => new(this.RootNode, this._definition.Blackmage);
 
     /// <summary>
     /// Information about the Summoner class.
     /// </summary>
-    public ClassJobEntry Summoner => new(this.RootNode, this.definition.Summoner);
+    public ClassJobEntry Summoner => new(this.RootNode, this._definition.Summoner);
 
     /// <summary>
     /// Information about the RedMage class.
     /// </summary>
-    public ClassJobEntry RedMage => new(this.RootNode, this.definition.Redmage);
+    public ClassJobEntry RedMage => new(this.RootNode, this._definition.Redmage);
     
     /// <summary>
     /// Information about the Pictomancer class.
     /// </summary>
-    public ClassJobEntry Pictomancer => new(this.RootNode, this.definition.Pictomancer);
+    public ClassJobEntry Pictomancer => new(this.RootNode, this._definition.Pictomancer);
 
     /// <summary>
     /// Information about the BlueMage class.
     /// </summary>
-    public ClassJobEntry BlueMage => new(this.RootNode, this.definition.Bluemage);
+    public ClassJobEntry BlueMage => new(this.RootNode, this._definition.Bluemage);
 
     /// <summary>
     /// Information about the Carpenter class.
     /// </summary>
-    public ClassJobEntry Carpenter => new(this.RootNode, this.definition.Carpenter);
+    public ClassJobEntry Carpenter => new(this.RootNode, this._definition.Carpenter);
 
     /// <summary>
     /// Information about the Blacksmith class.
     /// </summary>
-    public ClassJobEntry Blacksmith => new(this.RootNode, this.definition.Blacksmith);
+    public ClassJobEntry Blacksmith => new(this.RootNode, this._definition.Blacksmith);
 
     /// <summary>
     /// Information about the Armorer class.
     /// </summary>
-    public ClassJobEntry Armorer => new(this.RootNode, this.definition.Armorer);
+    public ClassJobEntry Armorer => new(this.RootNode, this._definition.Armorer);
 
     /// <summary>
     /// Information about the Goldsmith class.
     /// </summary>
-    public ClassJobEntry Goldsmith => new(this.RootNode, this.definition.Goldsmith);
+    public ClassJobEntry Goldsmith => new(this.RootNode, this._definition.Goldsmith);
 
     /// <summary>
     /// Information about the Leatherworker class.
     /// </summary>
-    public ClassJobEntry Leatherworker => new(this.RootNode, this.definition.Leatherworker);
+    public ClassJobEntry Leatherworker => new(this.RootNode, this._definition.Leatherworker);
 
     /// <summary>
     /// Information about the Weaver class.
     /// </summary>
-    public ClassJobEntry Weaver => new(this.RootNode, this.definition.Weaver);
+    public ClassJobEntry Weaver => new(this.RootNode, this._definition.Weaver);
 
     /// <summary>
     /// Information about the Alchemist class.
     /// </summary>
-    public ClassJobEntry Alchemist => new(this.RootNode, this.definition.Alchemist);
+    public ClassJobEntry Alchemist => new(this.RootNode, this._definition.Alchemist);
 
     /// <summary>
     /// Information about the Culinarian
     /// </summary>
-    public ClassJobEntry Culinarian => new(this.RootNode, this.definition.Culinarian);
+    public ClassJobEntry Culinarian => new(this.RootNode, this._definition.Culinarian);
 
     /// <summary>
     /// Information about the Miner class.
     /// </summary>
-    public ClassJobEntry Miner => new(this.RootNode, this.definition.Miner);
+    public ClassJobEntry Miner => new(this.RootNode, this._definition.Miner);
 
     /// <summary>
     /// Information about the Botanist class.
     /// </summary>
-    public ClassJobEntry Botanist => new(this.RootNode, this.definition.Botanist);
+    public ClassJobEntry Botanist => new(this.RootNode, this._definition.Botanist);
 
     /// <summary>
     /// Information about the Fisher class.
     /// </summary>
-    public ClassJobEntry Fisher => new(this.RootNode, this.definition.Fisher);
+    public ClassJobEntry Fisher => new(this.RootNode, this._definition.Fisher);
 
     /// <summary>
     /// This dictionary maps <see cref="StaticData.ClassJob"/> to the respective <see cref="ClassJobEntry"/>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using HtmlAgilityPack;
 using NetStone.Definitions.Model.FreeCompany;
 using NetStone.StaticData;
@@ -12,7 +11,7 @@ namespace NetStone.Model.Parseables.FreeCompany;
 /// </summary>
 public class FreeCompanyReputation : LodestoneParseable
 {
-    private readonly FreeCompanyReputationDefinition definition;
+    private readonly FreeCompanyReputationDefinition _definition;
 
     /// <summary>
     /// Creates Free Company reputation information
@@ -21,23 +20,23 @@ public class FreeCompanyReputation : LodestoneParseable
     /// <param name="definition"></param>
     public FreeCompanyReputation(HtmlNode rootNode, FreeCompanyReputationDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Maelstrom
     /// </summary>
-    public FreeCompanyReputationEntry Maelstrom => new(this.RootNode, this.definition.Maelstrom);
+    public FreeCompanyReputationEntry Maelstrom => new(this.RootNode, this._definition.Maelstrom);
 
     /// <summary>
     /// Order of the Twin Adder
     /// </summary>
-    public FreeCompanyReputationEntry Adders => new(this.RootNode, this.definition.Adders);
+    public FreeCompanyReputationEntry Adders => new(this.RootNode, this._definition.Adders);
 
     /// <summary>
     /// Immortal Flames
     /// </summary>
-    public FreeCompanyReputationEntry Flames => new(this.RootNode, this.definition.Flames);
+    public FreeCompanyReputationEntry Flames => new(this.RootNode, this._definition.Flames);
 
     /// <summary>
     /// Returns the relevant <see cref="FreeCompanyReputationEntry"/>.

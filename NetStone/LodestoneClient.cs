@@ -43,7 +43,7 @@ public class LodestoneClient : IDisposable
     /// </summary>
     public IGameDataProvider? Data { get; set; }
 
-    private readonly HttpClient client;
+    private readonly HttpClient _client;
 
     /// <summary>
     /// Initialize a new Lodestone client with default options.
@@ -51,7 +51,7 @@ public class LodestoneClient : IDisposable
     private LodestoneClient(DefinitionsContainer definitions, IGameDataProvider? gameData = null,
         string lodestoneBaseAddress = Constants.LodestoneBase)
     {
-        this.client = new HttpClient
+        this._client = new HttpClient
         {
             BaseAddress = new Uri(lodestoneBaseAddress),
         };
@@ -301,7 +301,7 @@ public class LodestoneClient : IDisposable
                 throw new ArgumentOutOfRangeException(nameof(agent), agent, null);
         }
 
-        var response = await this.client.SendAsync(request);
+        var response = await this._client.SendAsync(request);
 
         if (response.StatusCode == HttpStatusCode.NotFound)
             return null;
@@ -312,7 +312,7 @@ public class LodestoneClient : IDisposable
     /// <inheritdoc />
     public void Dispose()
     {
-        this.client.Dispose();
+        this._client.Dispose();
         this.Definitions.Dispose();
     }
 }

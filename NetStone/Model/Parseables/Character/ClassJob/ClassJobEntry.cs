@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using System.Linq;
-using HtmlAgilityPack;
+﻿using HtmlAgilityPack;
 using NetStone.Definitions.Model.Character;
 
 namespace NetStone.Model.Parseables.Character.ClassJob;
@@ -10,7 +8,7 @@ namespace NetStone.Model.Parseables.Character.ClassJob;
 /// </summary>
 public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntry>
 {
-    private readonly ClassJobEntryDefinition definition;
+    private readonly ClassJobEntryDefinition _definition;
 
     /// <summary>
     /// Constructs a new class entry
@@ -19,18 +17,18 @@ public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntr
     /// <param name="definition">Parser definition</param>
     public ClassJobEntry(HtmlNode rootNode, ClassJobEntryDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// The name of this class or job.
     /// </summary>
-    public string Name => Parse(this.definition.Name);
+    public string Name => Parse(this._definition.Name);
 
     /// <summary>
     /// The name of this class and job combo as shown in its tooltip.
     /// </summary>
-    public string Tooltip => Parse(this.definition.Tooltip);
+    public string Tooltip => Parse(this._definition.Tooltip);
 
     /// <summary>
     /// Value indicating whether this class has its job unlocked.
@@ -44,7 +42,7 @@ public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntr
     {
         get
         {
-            var level = Parse(this.definition.Level);
+            var level = Parse(this._definition.Level);
             return level == "-" ? 0 : int.Parse(level);
         }
     }
@@ -52,14 +50,14 @@ public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntr
     /// <summary>
     /// The amount of current achieved EXP on this level.
     /// </summary>
-    public long ExpCurrent => long.TryParse(Parse(this.definition.Exp, "CurrentEXP").Replace(",", ""), out var expCurrent)
+    public long ExpCurrent => long.TryParse(Parse(this._definition.Exp, "CurrentEXP").Replace(",", ""), out var expCurrent)
         ? expCurrent
         : 0;
 
     /// <summary>
     /// The amount of EXP to be reached to gain the next level.
     /// </summary>
-    public long ExpMax => long.TryParse(Parse(this.definition.Exp, "MaxEXP").Replace(",", ""), out var expMax)
+    public long ExpMax => long.TryParse(Parse(this._definition.Exp, "MaxEXP").Replace(",", ""), out var expMax)
         ? expMax 
         : 0;
 
@@ -71,7 +69,7 @@ public class ClassJobEntry : LodestoneParseable, IOptionalParseable<ClassJobEntr
     /// <summary>
     /// Value indicating whether this job, if DoH or DoL, is specialized.
     /// </summary>
-    public bool IsSpecialized => bool.TryParse(Parse(this.definition.IsSpecialized, "class"), out var isSpecialized) && isSpecialized;
+    public bool IsSpecialized => bool.TryParse(Parse(this._definition.IsSpecialized, "class"), out var isSpecialized) && isSpecialized;
 
     /// <summary>
     /// Value indicating if this class is unlocked.

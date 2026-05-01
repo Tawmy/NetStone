@@ -5,7 +5,7 @@ namespace NetStone.Definitions.Model.Character;
 /// <summary>
 /// General class for a category of collectables
 /// </summary>
-public interface CharacterCollectableDefinition : IDefinition
+public interface ICharacterCollectableDefinition : IDefinition
 {
     /// <summary>
     /// Get node definition for and entry
@@ -17,7 +17,7 @@ public interface CharacterCollectableDefinition : IDefinition
 /// <summary>
 /// Definition pack for a character's mounts
 /// </summary>
-public class CharacterMountDefinition : CharacterCollectableDefinition
+public class CharacterMountDefinition : ICharacterCollectableDefinition
 {
     /// <summary>
     /// Node definition for mounts
@@ -32,7 +32,7 @@ public class CharacterMountDefinition : CharacterCollectableDefinition
 /// <summary>
 /// Definition pack for a character's minions
 /// </summary>
-public class CharacterMinionDefinition : CharacterCollectableDefinition
+public class CharacterMinionDefinition : ICharacterCollectableDefinition
 {
     /// <summary>
     /// Noe definition for minions

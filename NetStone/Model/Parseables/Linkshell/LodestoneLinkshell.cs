@@ -11,7 +11,7 @@ namespace NetStone.Model.Parseables.Linkshell;
 /// </summary>
 public class LodestoneLinkshell : PaginatedIdResult<LodestoneLinkshell,LinkshellMemberEntry,LinkshellMemberEntryDefinition>
 {
-    private readonly LinkshellDefinition lsDefinition;
+    private readonly LinkshellDefinition _lsDefinition;
     
     /// <summary>
     /// Container class for a parseable linkshell page.
@@ -22,13 +22,13 @@ public class LodestoneLinkshell : PaginatedIdResult<LodestoneLinkshell,Linkshell
     /// <param name="id">The ID of the cross world linkshell.</param>
     public LodestoneLinkshell(LodestoneClient client, HtmlNode rootNode, DefinitionsContainer container, string id) : base(rootNode,container.LinkshellMember, client.GetLinkshell,id)
     {
-        this.lsDefinition = container.Linkshell;
+        this._lsDefinition = container.Linkshell;
     }
 
     /// <summary>
     /// Name
     /// </summary>
-    public string Name => Parse(this.lsDefinition.Name);
+    public string Name => Parse(this._lsDefinition.Name);
 
     /// <summary>
     /// List of members

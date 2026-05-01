@@ -12,17 +12,17 @@ namespace NetStone.Definitions;
 [JsonConverter(typeof(DefinitionTypeConverter))]
 public sealed class DefinitionType
 {
-    private readonly string? singleValue;
-    private readonly IReadOnlyDictionary<string, string>? multiValue;
+    private readonly string? _singleValue;
+    private readonly IReadOnlyDictionary<string, string>? _multiValue;
 
     internal DefinitionType(string singleValue)
     {
-        this.singleValue = singleValue;
+        this._singleValue = singleValue;
     }
 
     internal DefinitionType(IReadOnlyDictionary<string, string> multiValue)
     {
-        this.multiValue = multiValue;
+        this._multiValue = multiValue;
     }
 
     /// <summary>
@@ -32,11 +32,11 @@ public sealed class DefinitionType
     /// <returns>The type string, or <c>null</c> if no matching entry exists.</returns>
     public string? Get(string? groupName = null)
     {
-        if (this.singleValue is not null)
-            return this.singleValue;
+        if (this._singleValue is not null)
+            return this._singleValue;
 
-        if (this.multiValue is not null && groupName is not null &&
-            this.multiValue.TryGetValue(groupName, out var type))
+        if (this._multiValue is not null && groupName is not null &&
+            this._multiValue.TryGetValue(groupName, out var type))
             return type;
 
         return null;

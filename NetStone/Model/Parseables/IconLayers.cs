@@ -9,26 +9,26 @@ namespace NetStone.Model.Parseables;
 /// </summary>
 public class IconLayers : LodestoneParseable
 {
-    private readonly IconLayersDefinition definition;
+    private readonly IconLayersDefinition _definition;
 
     ///<inheritdoc />
     public IconLayers(HtmlNode rootNode, IconLayersDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Link to the top layer image of the icon.
     /// </summary>
-    public Uri? TopLayer => Parse(this.definition.Top) is { Length: > 0 } topLayer ? new Uri(topLayer) : null;
+    public Uri? TopLayer => Parse(this._definition.Top) is { Length: > 0 } topLayer ? new Uri(topLayer) : null;
 
     /// <summary>
     /// Link to the top layer image of the icon.
     /// </summary>
-    public Uri? MiddleLayer => Parse(this.definition.Middle) is { Length: > 0 } middleLayer ? new Uri(middleLayer) : null;
+    public Uri? MiddleLayer => Parse(this._definition.Middle) is { Length: > 0 } middleLayer ? new Uri(middleLayer) : null;
 
     /// <summary>
     /// Link to the top layer image of the icon.
     /// </summary>
-    public Uri? BottomLayer => Parse(this.definition.Bottom) is { Length: > 0 } bottomLayer ? new Uri(bottomLayer) : null;
+    public Uri? BottomLayer => Parse(this._definition.Bottom) is { Length: > 0 } bottomLayer ? new Uri(bottomLayer) : null;
 }

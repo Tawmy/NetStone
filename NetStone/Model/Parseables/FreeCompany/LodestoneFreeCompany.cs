@@ -4,7 +4,6 @@ using HtmlAgilityPack;
 using NetStone.Definitions;
 using NetStone.Definitions.Model.FreeCompany;
 using NetStone.Model.Parseables.FreeCompany.Members;
-using NetStone.Search.FreeCompany;
 
 namespace NetStone.Model.Parseables.FreeCompany;
 
@@ -13,11 +12,11 @@ namespace NetStone.Model.Parseables.FreeCompany;
 /// </summary>
 public class LodestoneFreeCompany : LodestoneParseable
 {
-    private readonly LodestoneClient client;
+    private readonly LodestoneClient _client;
 
-    private readonly FreeCompanyDefinition fcDefinition;
-    private readonly FreeCompanyFocusDefinition focusDefinition;
-    private readonly FreeCompanyReputationDefinition reputationDefinition;
+    private readonly FreeCompanyDefinition _fcDefinition;
+    private readonly FreeCompanyFocusDefinition _focusDefinition;
+    private readonly FreeCompanyReputationDefinition _reputationDefinition;
 
     /// <summary>
     /// Constructs Free Company information parser
@@ -29,18 +28,18 @@ public class LodestoneFreeCompany : LodestoneParseable
     public LodestoneFreeCompany(LodestoneClient client, HtmlNode rootNode, DefinitionsContainer definitions, string id)
         : base(rootNode)
     {
-        this.client = client;
+        this._client = client;
         this.Id = id;
 
-        this.fcDefinition = definitions.FreeCompany;
-        this.focusDefinition = definitions.FreeCompanyFocus;
-        this.reputationDefinition = definitions.FreeCompanyReputation;
+        this._fcDefinition = definitions.FreeCompany;
+        this._focusDefinition = definitions.FreeCompanyFocus;
+        this._reputationDefinition = definitions.FreeCompanyReputation;
     }
 
     /// <summary>
     /// Name of this FC
     /// </summary>
-    public string Name => Parse(this.fcDefinition.Name);
+    public string Name => Parse(this._fcDefinition.Name);
 
     /// <summary>
     /// Id of this FC
@@ -50,84 +49,84 @@ public class LodestoneFreeCompany : LodestoneParseable
     /// <summary>
     /// Slogan
     /// </summary>
-    public string Slogan => Parse(this.fcDefinition.Slogan);
+    public string Slogan => Parse(this._fcDefinition.Slogan);
 
     /// <summary>
     /// Tag
     /// </summary>
-    public string Tag => Parse(this.fcDefinition.Tag);
+    public string Tag => Parse(this._fcDefinition.Tag);
 
     /// <summary>
     /// FC Icon/Crest
     /// </summary>
-    public IconLayers CrestLayers => new(this.RootNode, this.fcDefinition.CrestLayers);
+    public IconLayers CrestLayers => new(this.RootNode, this._fcDefinition.CrestLayers);
 
     /// <summary>
     /// Formation date
     /// </summary>
-    public DateTime Formed => ParseTime(this.fcDefinition.Formed);
+    public DateTime Formed => ParseTime(this._fcDefinition.Formed);
 
     /// <summary>
     /// Current GC
     /// </summary>
-    public string GrandCompany => Parse(this.fcDefinition.GrandCompany).TrimEnd();
+    public string GrandCompany => Parse(this._fcDefinition.GrandCompany).TrimEnd();
 
     /// <summary>
     /// Current Rank
     /// </summary>
-    public int Rank => int.Parse(Parse(this.fcDefinition.Rank));
+    public int Rank => int.Parse(Parse(this._fcDefinition.Rank));
 
     /// <summary>
     /// Monthly ranking
     /// </summary>
-    public int? RankingMonthly => int.TryParse(Parse(this.fcDefinition.Ranking.Monthly), out var result) ? result : null;
+    public int? RankingMonthly => int.TryParse(Parse(this._fcDefinition.Ranking.Monthly), out var result) ? result : null;
 
     /// <summary>
     /// Weekly ranking
     /// </summary>
-    public int? RankingWeekly => int.TryParse(Parse(this.fcDefinition.Ranking.Weekly), out var result) ? result : null;
+    public int? RankingWeekly => int.TryParse(Parse(this._fcDefinition.Ranking.Weekly), out var result) ? result : null;
 
     /// <summary>
     /// Recruitment status
     /// </summary>
-    public string Recruitment => Parse(this.fcDefinition.Recruitment);
+    public string Recruitment => Parse(this._fcDefinition.Recruitment);
 
     /// <summary>
     /// Number of active members
     /// </summary>
-    public int ActiveMemberCount => int.Parse(Parse(this.fcDefinition.ActiveMemberCount));
+    public int ActiveMemberCount => int.Parse(Parse(this._fcDefinition.ActiveMemberCount));
 
     /// <summary>
     /// Activity status
     /// </summary>
     //todo: selector does not work
-    public string ActiveState => Parse(this.fcDefinition.Activestate).Trim();
+    public string ActiveState => Parse(this._fcDefinition.Activestate).Trim();
 
 
     /// <summary>
     /// Information about the estate
     /// </summary>
     public FreeCompanyEstate? Estate =>
-        new FreeCompanyEstate(this.RootNode, this.fcDefinition.EstateDefinition).GetOptional();
+        new FreeCompanyEstate(this.RootNode, this._fcDefinition.EstateDefinition).GetOptional();
 
     /// <summary>
     /// Information about focused gameplay
     /// </summary>
-    public FreeCompanyFocus? Focus => new FreeCompanyFocus(this.RootNode, this.focusDefinition).GetOptional();
+    public FreeCompanyFocus? Focus => new FreeCompanyFocus(this.RootNode, this._focusDefinition).GetOptional();
 
     /// <summary>
     /// Reputation with the Grand Companies
     /// </summary>
-    public FreeCompanyReputation Reputation => new(this.RootNode, this.reputationDefinition);
+    public FreeCompanyReputation Reputation => new(this.RootNode, this._reputationDefinition);
 
     /// <summary>
     /// Home World 
     /// </summary>
-    public string World => Parse(this.fcDefinition.Server);
+    public string World => Parse(this._fcDefinition.Server);
 
     /// <summary>
     /// Fetches all members of this FC
     /// </summary>
     /// <returns>Members</returns>
-    public async Task<FreeCompanyMembers?> GetMembers() => await this.client.GetFreeCompanyMembers(this.Id);
+    public async Task<FreeCompanyMembers?> GetMembers() => await this._client.GetFreeCompanyMembers(this.Id);
 }

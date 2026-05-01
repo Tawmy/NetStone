@@ -13,7 +13,7 @@ public class CrossworldLinkshellSearchPage
     : PaginatedSearchResult<CrossworldLinkshellSearchPage, CrossworldLinkshellSearchEntry, 
         CrossworldLinkshellSearchEntryDefinition, CrossworldLinkshellSearchQuery>
 {
-    private readonly LodestoneClient client;
+    private readonly LodestoneClient _client;
     /// <summary>
     /// Constructs character search results
     /// </summary>
@@ -26,7 +26,7 @@ public class CrossworldLinkshellSearchPage
                                          CrossworldLinkshellSearchQuery currentQuery) 
         : base(rootNode, pageDefinition, client.SearchCrossworldLinkshell, currentQuery)
     {
-        this.client = client;
+        this._client = client;
     }
     
 
@@ -43,7 +43,7 @@ public class CrossworldLinkshellSearchPage
          var parsedResults = new CrossworldLinkshellSearchEntry[container.Length];
         for (var i = 0; i < parsedResults.Length; i++)
         {
-            parsedResults[i] = new CrossworldLinkshellSearchEntry(this.client, container[i], this.PageDefinition.Entry);
+            parsedResults[i] = new CrossworldLinkshellSearchEntry(this._client, container[i], this.PageDefinition.Entry);
         }
         return parsedResults;
     }

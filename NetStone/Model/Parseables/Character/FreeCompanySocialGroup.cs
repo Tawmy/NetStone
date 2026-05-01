@@ -10,7 +10,7 @@ namespace NetStone.Model.Parseables.Character;
 /// </summary>
 public class FreeCompanySocialGroup : SocialGroup
 {
-    private readonly LodestoneClient client;
+    private readonly LodestoneClient _client;
 
     /// <summary>
     /// Constructs FC entry for profile page
@@ -21,13 +21,12 @@ public class FreeCompanySocialGroup : SocialGroup
     public FreeCompanySocialGroup(LodestoneClient client, HtmlNode rootNode,
         ICharacterSocialGroupDefinition socialGroupDefinition) : base(rootNode, socialGroupDefinition)
     {
-        this.client = client;
+        this._client = client;
     }
 
     /// <summary>
     /// Fetch the full details of this FC.
     /// </summary>
     /// <returns><see cref="LodestoneFreeCompany"/> object containing all details of the free company.</returns>
-    public async Task<LodestoneFreeCompany?> GetDetails() =>
-        this.Id is null ? null : await this.client.GetFreeCompany(this.Id);
+    public async Task<LodestoneFreeCompany?> GetDetails() => await this._client.GetFreeCompany(this.Id);
 }

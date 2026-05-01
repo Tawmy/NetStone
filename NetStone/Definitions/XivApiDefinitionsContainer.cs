@@ -17,14 +17,14 @@ public class XivApiDefinitionsContainer : DefinitionsContainer
 {
     private const string DefinitionRepoBase = "https://raw.githubusercontent.com/tawmy/lodestone-css-selectors/main/";
 
-    private readonly HttpClient client;
+    private readonly HttpClient _client;
 
     /// <summary>
     /// Constructs this class without populating definitions
     /// </summary>
     public XivApiDefinitionsContainer()
     {
-        this.client = new HttpClient
+        this._client = new HttpClient
         {
             BaseAddress = new Uri(DefinitionRepoBase),
         };
@@ -69,7 +69,7 @@ public class XivApiDefinitionsContainer : DefinitionsContainer
 
     private async Task<T> GetDefinition<T>(string path) where T : IDefinition
     {
-        var json = await this.client.GetStringAsync(path);
+        var json = await this._client.GetStringAsync(path);
         var result = JsonConvert.DeserializeObject<T>(json);
         return result == null ? throw new FormatException($"Could not parse definitions in {path}.") : result;
     }
@@ -77,6 +77,6 @@ public class XivApiDefinitionsContainer : DefinitionsContainer
     /// <inheritdoc />
     public override void Dispose()
     {
-        this.client.Dispose();
+        this._client.Dispose();
     }
 }

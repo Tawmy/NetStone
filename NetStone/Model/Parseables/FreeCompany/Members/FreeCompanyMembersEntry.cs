@@ -9,56 +9,56 @@ namespace NetStone.Model.Parseables.FreeCompany.Members;
 /// </summary>
 public class FreeCompanyMembersEntry : LodestoneParseable
 {
-    private readonly FreeCompanyMembersEntryDefinition definition;
+    private readonly FreeCompanyMembersEntryDefinition _definition;
 
     ///
     public FreeCompanyMembersEntry(HtmlNode rootNode, FreeCompanyMembersEntryDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Name of character
     /// </summary>
-    public string Name => Parse(this.definition.Name);
+    public string Name => Parse(this._definition.Name);
 
     /// <summary>
     /// Id of character
     /// </summary>
-    public string Id => Parse(this.definition.Id);
+    public string Id => Parse(this._definition.Id);
 
     /// <summary>
     /// Rank with character's Grand Company
     /// </summary>
-    public string Rank => Parse(this.definition.Rank);
+    public string Rank => Parse(this._definition.Rank);
 
     /// <summary>
     /// Icon representing <see cref="Rank" />
     /// </summary>
-    public Uri? RankIcon => Parse(this.definition.RankIcon) is { Length: > 0 } rankIcon ? new Uri(rankIcon) : null;
+    public Uri? RankIcon => Parse(this._definition.RankIcon) is { Length: > 0 } rankIcon ? new Uri(rankIcon) : null;
 
     /// <summary>
     /// Rank with character's Free Company
     /// </summary>
-    public string FreeCompanyRank => Parse(this.definition.FreeCompanyRank);
+    public string FreeCompanyRank => Parse(this._definition.FreeCompanyRank);
 
     /// <summary>
     /// Icon representing <see cref="FreeCompanyRank"/>
     /// </summary>
-    public Uri FreeCompanyRankIcon => new(Parse(this.definition.FreeCompanyRankIcon));
+    public Uri FreeCompanyRankIcon => new(Parse(this._definition.FreeCompanyRankIcon));
 
     /// <summary>
     /// Home world
     /// </summary>
-    public string Server => Parse(this.definition.Server, "World");
+    public string Server => Parse(this._definition.Server, "World");
 
     /// <summary>
     /// Data center
     /// </summary>
-    public string Datacenter => Parse(this.definition.Server, "DC");
+    public string Datacenter => Parse(this._definition.Server, "DC");
 
     /// <summary>
     /// Character's avatar
     /// </summary>
-    public Uri Avatar => new(Parse(this.definition.Avatar));
+    public Uri Avatar => new(Parse(this._definition.Avatar));
 }

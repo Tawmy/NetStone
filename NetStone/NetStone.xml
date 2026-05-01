@@ -323,17 +323,17 @@
             Definitions for Bozja jobs
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.Character.ClassJobBozjaDefinition.LEVEL">
+        <member name="P:NetStone.Definitions.Model.Character.ClassJobBozjaDefinition.Level">
             <summary>
             Level
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.Character.ClassJobBozjaDefinition.METTLE">
+        <member name="P:NetStone.Definitions.Model.Character.ClassJobBozjaDefinition.Mettle">
             <summary>
             Mettle
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.Character.ClassJobBozjaDefinition.NAME">
+        <member name="P:NetStone.Definitions.Model.Character.ClassJobBozjaDefinition.Name">
             <summary>
             Name
             </summary>
@@ -568,12 +568,12 @@
             Fisher
             </summary>
         </member>
-        <member name="T:NetStone.Definitions.Model.Character.CharacterCollectableDefinition">
+        <member name="T:NetStone.Definitions.Model.Character.ICharacterCollectableDefinition">
             <summary>
             General class for a category of collectables
             </summary>
         </member>
-        <member name="M:NetStone.Definitions.Model.Character.CharacterCollectableDefinition.GetDefinitions">
+        <member name="M:NetStone.Definitions.Model.Character.ICharacterCollectableDefinition.GetDefinitions">
             <summary>
             Get node definition for and entry
             </summary>
@@ -1239,17 +1239,17 @@
             us
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition.NAME">
+        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition.Name">
             <summary>
             Name of type
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition.ICON">
+        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition.Icon">
             <summary>
             Icon for type
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition.STATUS">
+        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition.Status">
             <summary>
             Status (if company focuses on this)
             </summary>
@@ -1259,7 +1259,7 @@
             Definition container for all FC focus types
             </summary>
         </member>
-        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusDefinition.NOTSPECIFIED">
+        <member name="P:NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusDefinition.NotSpecified">
             <summary>
             No focus specified
             </summary>
@@ -2817,7 +2817,7 @@
             Models a collection of collectables for characters
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectable.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterCollectableDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectable.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ICharacterCollectableDefinition)">
             <summary>
             Constructs a collectable collection
             </summary>
@@ -2834,7 +2834,7 @@
             Entry for collectable collection
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectableEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterCollectableDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectableEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ICharacterCollectableDefinition)">
             <summary>
             Constructs one collectable entry
             </summary>

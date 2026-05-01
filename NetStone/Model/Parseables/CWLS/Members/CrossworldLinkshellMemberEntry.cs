@@ -8,7 +8,7 @@ namespace NetStone.Model.Parseables.CWLS.Members;
 /// </summary>
 public class CrossworldLinkshellMemberEntry : LodestoneParseable
 {
-    private readonly CrossworldLinkshellMemberEntryDefinition definition;
+    private readonly CrossworldLinkshellMemberEntryDefinition _definition;
     /// <summary>
     /// Create instance of member entry for a given node
     /// </summary>
@@ -16,46 +16,46 @@ public class CrossworldLinkshellMemberEntry : LodestoneParseable
     /// <param name="definition">Css and regex definition</param>
     public CrossworldLinkshellMemberEntry(HtmlNode rootNode, CrossworldLinkshellMemberEntryDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Avatar
     /// </summary>
-    public string Avatar => Parse(this.definition.Avatar);
+    public string Avatar => Parse(this._definition.Avatar);
 
     /// <summary>
     /// ID
     /// </summary>
-    public string? Id => Parse(this.definition.Id);
+    public string Id => Parse(this._definition.Id);
 
     /// <summary>
     /// Name
     /// </summary>
-    public string Name => Parse(this.definition.Name);
+    public string Name => Parse(this._definition.Name);
 
     /// <summary>
     /// Rank
     /// </summary>
-    public string Rank => Parse(this.definition.Rank);
+    public string Rank => Parse(this._definition.Rank);
 
     /// <summary>
     /// Rank Icon
     /// </summary>
-    public string RankIcon => Parse(this.definition.RankIcon);
+    public string RankIcon => Parse(this._definition.RankIcon);
 
     /// <summary>
     /// Linkshell rank
     /// </summary>
-    public string LinkshellRank => Parse(this.definition.LinkshellRank);
+    public string LinkshellRank => Parse(this._definition.LinkshellRank);
 
     /// <summary>
     /// Linkshell rank Icon
     /// </summary>
-    public string LinkshellRankIcon => Parse(this.definition.LinkshellRankIcon);
+    public string LinkshellRankIcon => Parse(this._definition.LinkshellRankIcon);
 
     /// <summary>
     /// Server
     /// </summary>
-    public string Server => Parse(this.definition.Server);
+    public string Server => Parse(this._definition.Server);
 }

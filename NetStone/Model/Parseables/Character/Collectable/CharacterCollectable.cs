@@ -8,19 +8,19 @@ namespace NetStone.Model.Parseables.Character.Collectable;
 /// </summary>
 public class CharacterCollectable : LodestoneParseable
 {
-    private readonly CharacterCollectableDefinition definition;
+    private readonly ICharacterCollectableDefinition _definition;
 
     /// <summary>
     /// Constructs a collectable collection
     /// </summary>
     /// <param name="rootNode">Root node of list</param>
     /// <param name="definition">Parser definitions</param>
-    public CharacterCollectable(HtmlNode rootNode, CharacterCollectableDefinition definition) : base(rootNode)
+    public CharacterCollectable(HtmlNode rootNode, ICharacterCollectableDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
-    private CharacterCollectableEntry[]? parsedResults;
+    private CharacterCollectableEntry[]? _parsedResults;
 
     /// <summary>
     /// All collectables collected by the character.
@@ -29,21 +29,21 @@ public class CharacterCollectable : LodestoneParseable
     {
         get
         {
-            if (this.parsedResults == null)
+            if (this._parsedResults == null)
                 ParseCollectables();
 
-            return this.parsedResults!;
+            return this._parsedResults!;
         }
     }
 
     private void ParseCollectables()
     {
-        var nodes = QueryChildNodes(this.definition.GetDefinitions().Root);
+        var nodes = QueryChildNodes(this._definition.GetDefinitions().Root);
 
-        this.parsedResults = new CharacterCollectableEntry[nodes.Length];
-        for (var i = 0; i < this.parsedResults.Length; i++)
+        this._parsedResults = new CharacterCollectableEntry[nodes.Length];
+        for (var i = 0; i < this._parsedResults.Length; i++)
         {
-            this.parsedResults[i] = new CharacterCollectableEntry(nodes[i], this.definition);
+            this._parsedResults[i] = new CharacterCollectableEntry(nodes[i], this._definition);
         }
     }
 }

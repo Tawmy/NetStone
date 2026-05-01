@@ -12,46 +12,46 @@ namespace NetStone.Model.Parseables.Search.FreeCompany;
 /// </summary>
 public class FreeCompanySearchEntry : LodestoneParseable
 {
-    private readonly LodestoneClient client;
-    private readonly FreeCompanySearchEntryDefinition definition;
+    private readonly LodestoneClient _client;
+    private readonly FreeCompanySearchEntryDefinition _definition;
 
     ///
     public FreeCompanySearchEntry(LodestoneClient client, HtmlNode rootNode,
                                   FreeCompanySearchEntryDefinition definition) : base(rootNode)
     {
-        this.client = client;
-        this.definition = definition;
+        this._client = client;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Free Company name
     /// </summary>
-    public string Name => Parse(this.definition.Name);
+    public string Name => Parse(this._definition.Name);
 
     /// <summary>
     /// Free company Id
     /// </summary>
-    public string? Id => Parse(this.definition.Id);
+    public string Id => Parse(this._definition.Id);
 
     /// <summary>
     /// Home world of the FC
     /// </summary>
-    public string Server => Parse(this.definition.Server, "World");
+    public string Server => Parse(this._definition.Server, "World");
 
     /// <summary>
     /// Data center of the FC
     /// </summary>
-    public string Datacenter => Parse(this.definition.Server, "DC");
+    public string Datacenter => Parse(this._definition.Server, "DC");
 
     /// <summary>
     /// FC crest/icon
     /// </summary>
-    public IconLayers CrestLayers => new(this.RootNode, this.definition.CrestLayers);
+    public IconLayers CrestLayers => new(this.RootNode, this._definition.CrestLayers);
 
     /// <summary>
     /// Formation date
     /// </summary>
-    public DateTime Formed => ParseTime(this.definition.Formed);
+    public DateTime Formed => ParseTime(this._definition.Formed);
 
     /// <summary>
     /// Active status
@@ -68,27 +68,27 @@ public class FreeCompanySearchEntry : LodestoneParseable
     /// <summary>
     /// Full text of active times
     /// </summary>
-    public string ActiveText => Parse(this.definition.Active);
+    public string ActiveText => Parse(this._definition.Active);
 
     /// <summary>
     /// Active member count
     /// </summary>
-    public int ActiveMembers => int.Parse(Parse(this.definition.ActiveMembers));
+    public int ActiveMembers => int.Parse(Parse(this._definition.ActiveMembers));
 
     /// <summary>
     /// Recruitment status
     /// </summary>
-    public bool RecruitmentOpen => Parse(this.definition.RecruitmentOpen) == "Open";
+    public bool RecruitmentOpen => Parse(this._definition.RecruitmentOpen) == "Open";
 
     /// <summary>
     /// Affiliated grand company
     /// </summary>
-    public string GrandCompany => Parse(this.definition.GrandCompany);
+    public string GrandCompany => Parse(this._definition.GrandCompany);
 
     /// <summary>
     /// Estate status
     /// </summary>
-    public Housing EstateBuild => Parse(this.definition.EstateBuilt) switch
+    public Housing EstateBuild => Parse(this._definition.EstateBuilt) switch
     {
         "No Estate or Plot" => Housing.NoEstateOrPlot,
         "Estate Built"      => Housing.EstateBuilt,
@@ -100,8 +100,7 @@ public class FreeCompanySearchEntry : LodestoneParseable
     /// Retrieve Free Company profile 
     /// </summary>
     /// <returns>Full FC profile</returns>
-    public async Task<LodestoneFreeCompany?> GetFreeCompany() =>
-        this.Id is null ? null : await this.client.GetFreeCompany(this.Id);
+    public async Task<LodestoneFreeCompany?> GetFreeCompany() => await this._client.GetFreeCompany(this.Id);
 
     ///<inheritdoc />
     public override string ToString() => this.Name;

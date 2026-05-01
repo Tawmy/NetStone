@@ -9,12 +9,12 @@ namespace NetStone.Model.Parseables.Character.Gear;
 /// </summary>
 public class SoulcrystalEntry : LodestoneParseable, IOptionalParseable<SoulcrystalEntry>
 {
-    private readonly SoulcrystalEntryDefinition definition;
+    private readonly SoulcrystalEntryDefinition _definition;
 
     ///<inheritdoc />
     public SoulcrystalEntry(HtmlNode rootNode, SoulcrystalEntryDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     //public Uri ItemDatabaseLink => ParseHrefOld(this.definition.Name);
@@ -22,15 +22,15 @@ public class SoulcrystalEntry : LodestoneParseable, IOptionalParseable<Soulcryst
     /// <summary>
     /// Name of the item
     /// </summary>
-    public string ItemName => Parse(this.definition.Name);
+    public string ItemName => Parse(this._definition.Name);
     
     /// <summary>
     /// Icon of the item
     /// </summary>
-    public Uri IconLink => new(Parse(this.definition.IconLink));
+    public Uri IconLink => new(Parse(this._definition.IconLink));
 
     /// <inheritdoc />
-    public bool Exists => HasNode(this.definition.Name);
+    public bool Exists => HasNode(this._definition.Name);
 
     ///<inheritdoc />
     public override string ToString() => this.ItemName;

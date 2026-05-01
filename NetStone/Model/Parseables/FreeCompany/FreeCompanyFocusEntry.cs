@@ -9,7 +9,7 @@ namespace NetStone.Model.Parseables.FreeCompany;
 /// </summary>
 public class FreeCompanyFocusEntry : LodestoneParseable
 {
-    private readonly FreeCompanyFocusEntryDefinition definition;
+    private readonly FreeCompanyFocusEntryDefinition _definition;
 
     /// <summary>
     /// Construct instance to parse focus
@@ -18,21 +18,21 @@ public class FreeCompanyFocusEntry : LodestoneParseable
     /// <param name="definition">Parse definition</param>
     public FreeCompanyFocusEntry(HtmlNode rootNode, FreeCompanyFocusEntryDefinition definition) : base(rootNode)
     {
-        this.definition = definition;
+        this._definition = definition;
     }
 
     /// <summary>
     /// Name of the focus type
     /// </summary>
-    public string Name => Parse(this.definition.NAME);
+    public string Name => Parse(this._definition.Name);
 
     /// <summary>
     /// Uri to icon
     /// </summary>
-    public Uri Icon => new(Parse(this.definition.ICON));
+    public Uri Icon => new(Parse(this._definition.Icon));
 
     /// <summary>
     /// Indicates this focus is selected
     /// </summary>
-    public bool IsEnabled => string.IsNullOrEmpty(Parse(this.definition.STATUS));
+    public bool IsEnabled => string.IsNullOrEmpty(Parse(this._definition.Status));
 }

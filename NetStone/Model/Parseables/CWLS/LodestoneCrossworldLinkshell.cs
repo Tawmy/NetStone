@@ -12,7 +12,7 @@ namespace NetStone.Model.Parseables.CWLS;
 public class LodestoneCrossworldLinkshell : PaginatedIdResult<LodestoneCrossworldLinkshell,CrossworldLinkshellMemberEntry, CrossworldLinkshellMemberEntryDefinition>
 {
 
-    private readonly CrossworldLinkshellDefinition definition;
+    private readonly CrossworldLinkshellDefinition _definition;
     
     /// <summary>
     /// Container class for a parseable corss world linkshell page.
@@ -24,18 +24,18 @@ public class LodestoneCrossworldLinkshell : PaginatedIdResult<LodestoneCrossworl
     public LodestoneCrossworldLinkshell(LodestoneClient client, HtmlNode rootNode, DefinitionsContainer container, string id) 
         : base(rootNode,container.CrossworldLinkshellMember,client.GetCrossworldLinkshell,id)
     {
-        this.definition = container.CrossworldLinkshell;
+        this._definition = container.CrossworldLinkshell;
     }
 
     /// <summary>
     /// Name
     /// </summary>
-    public string Name => Parse(this.definition.Name);
+    public string Name => Parse(this._definition.Name);
     
     /// <summary>
     /// Datacenter
     /// </summary>
-    public string DataCenter => Parse(this.definition.DataCenter);
+    public string DataCenter => Parse(this._definition.DataCenter);
 
     /// <summary>
     /// Members
