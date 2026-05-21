@@ -1,11 +1,10 @@
-﻿using HtmlAgilityPack;
-using HtmlAgilityPack.CssSelectors.NetCore;
-using NetStone.Definitions;
+﻿using NetStone.Definitions;
 using NetStone.Definitions.Model;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using AngleSharp.Dom;
 
 namespace NetStone.Model;
 
@@ -17,33 +16,33 @@ public abstract class LodestoneParseable
     /// <summary>
     /// The HTML document's root node.
     /// </summary>
-    protected readonly HtmlNode RootNode;
+    protected readonly IElement RootNode;
 
     /// <summary>
     /// Constructs an instance of parseable data for given node
     /// </summary>
     /// <param name="rootNode"></param>
-    protected LodestoneParseable(HtmlNode rootNode)
+    protected LodestoneParseable(IElement rootNode)
     {
         this.RootNode = rootNode;
     }
 
     /// <summary>
-    /// Query a <see cref="HtmlNode"/> via pack selector.
+    /// Query a <see cref="Node"/> via pack selector.
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
     /// <returns>The needed node.</returns>
-    protected HtmlNode? QueryNode(DefinitionsPack pack) => this.RootNode.QuerySelector(pack.Selector);
+    protected IElement? QueryNode(DefinitionsPack pack) => this.RootNode.QuerySelector(pack.Selector);
 
     /// <summary>
-    /// Query all ChildNodes of a <see cref="HtmlNode"/> via pack selector.
+    /// Query all ChildNodes of a <see cref="Node"/> via pack selector.
     /// Removes unneeded "#text" nodes.
     /// </summary>
     /// <param name="pack">Definition of the node.</param>
     /// <returns>All ChildNodes.</returns>
-    protected HtmlNode[] QueryChildNodes(DefinitionsPack pack) => this.RootNode
+    protected IElement[] QueryChildNodes(DefinitionsPack pack) => this.RootNode
         .QuerySelectorAll(pack.Selector)
-        .Where(x => x.Name != "#text")
+        .Where(x => x.NodeName != "#text")
         .ToArray();
 
     /// <summary>
@@ -53,7 +52,7 @@ public abstract class LodestoneParseable
     /// <param name="pagedDefinition">Parser definition</param>
     /// <returns>List of nodes</returns>
     /// <exception cref="ArgumentException"></exception>
-    protected HtmlNode[] QueryContainer<TEntry>(PagedDefinition<TEntry> pagedDefinition) where TEntry : PagedEntryDefinition
+    protected IElement[] QueryContainer<TEntry>(PagedDefinition<TEntry> pagedDefinition) where TEntry : PagedEntryDefinition
     {
         var entryDef = pagedDefinition.Entry;
 
@@ -61,7 +60,7 @@ public abstract class LodestoneParseable
             throw new ArgumentException("Could not get entry definition");
 
         return QueryNode(pagedDefinition.Root)
-            ?.QuerySelectorAll(entryDef.Root.Selector).ToArray() ?? Array.Empty<HtmlNode>();
+            ?.QuerySelectorAll(entryDef.Root.Selector).ToArray() ?? Array.Empty<IElement>();
     }
 
     /// <summary>
@@ -156,7 +155,7 @@ public abstract class LodestoneParseable
         var node = QueryNode(pack);
 
         // Handle default attribute parsing
-        var text = node?.InnerText;
+        var text = node?.TextContent;
 
         return !string.IsNullOrEmpty(text) ? HttpUtility.HtmlDecode(text) : string.Empty;
     }

@@ -3,8 +3,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
-using HtmlAgilityPack.CssSelectors.NetCore;
+using AngleSharp;
+using AngleSharp.Dom;
 using NetStone.Definitions;
 using NetStone.GameData;
 using NetStone.Model;
@@ -254,28 +254,29 @@ public class LodestoneClient : IDisposable
     /// <exception cref="HttpRequestException"> The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     /// <param name="lazyLoadTooltips">Indicates whether tooltips should be lazy loaded on the parsed HTML document.</param>
     /// <returns>The instantiated LodestoneParseable in case of success.</returns>
-    private async Task<T?> GetParsed<T>(string url, Func<HtmlNode, T?> createParseable,
+    private async Task<T?> GetParsed<T>(string url, Func<IElement, T?> createParseable,
         UserAgent agent = UserAgent.Desktop, bool lazyLoadTooltips = false) where T : LodestoneParseable
     {
         var html = await FetchHtml(url, agent);
         if (html is null) return null;
 
-        var doc = new HtmlDocument();
-        doc.LoadHtml(html);
+        var config = Configuration.Default;
+        var context = BrowsingContext.New(config);
+        var doc = await context.OpenAsync(req => req.Content(html));
 
         if (lazyLoadTooltips) 
             await LazyLoadTooltips(doc);
 
-        return createParseable.Invoke(doc.DocumentNode);
+        return createParseable.Invoke(doc.DocumentElement);
     }
 
-    private async Task LazyLoadTooltips(HtmlDocument doc)
+    private async Task LazyLoadTooltips(IDocument doc)
     {
-        var tooltipElements = doc.DocumentNode.QuerySelectorAll("[data-lazy_load_url]").ToList();
-        var tooltipResults = await Task.WhenAll(tooltipElements.Select(async node =>
+        var tooltipElements = doc.QuerySelectorAll("[data-lazy_load_url]").ToList();
+        var tooltipResults = await Task.WhenAll(tooltipElements.Select(async element =>
         {
-            var tooltipUrl = node.GetAttributeValue("data-lazy_load_url", string.Empty);
-            return !string.IsNullOrEmpty(tooltipUrl) ? (node, await FetchHtml(tooltipUrl)) : (node, null);
+            var tooltipUrl = element.GetAttribute("data-lazy_load_url") ?? string.Empty;
+            return !string.IsNullOrEmpty(tooltipUrl) ? (element, await FetchHtml(tooltipUrl)) : (element, null);
         }));
 
         foreach (var (el, tooltipHtml) in tooltipResults)

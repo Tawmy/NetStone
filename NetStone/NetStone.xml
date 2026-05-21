@@ -2018,7 +2018,7 @@
             <exception cref="T:System.Net.Http.HttpRequestException"> The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
             <returns><see cref="T:NetStone.Model.Parseables.Search.FreeCompany.FreeCompanySearchPage"/> containing search results.</returns>
         </member>
-        <member name="M:NetStone.LodestoneClient.GetParsed``1(System.String,System.Func{HtmlAgilityPack.HtmlNode,``0},NetStone.UserAgent,System.Boolean)">
+        <member name="M:NetStone.LodestoneClient.GetParsed``1(System.String,System.Func{AngleSharp.Dom.IElement,``0},NetStone.UserAgent,System.Boolean)">
             <summary>
             Get the instantiated LodestoneParseable if the request succeeded, or null in case of StatusCode.NotFound.
             </summary>
@@ -2082,7 +2082,7 @@
             Container class holding paginated information
             </summary>
         </member>
-        <member name="M:NetStone.Model.PaginatedIdResult`3.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{`2},System.Func{System.String,System.Int32,System.Threading.Tasks.Task{`0}},System.String)">
+        <member name="M:NetStone.Model.PaginatedIdResult`3.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{`2},System.Func{System.String,System.Int32,System.Threading.Tasks.Task{`0}},System.String)">
             <inheritdoc />
         </member>
         <member name="T:NetStone.Model.PaginatedSearchResult`4">
@@ -2090,7 +2090,7 @@
             Container class holding paginated information
             </summary>
         </member>
-        <member name="M:NetStone.Model.PaginatedSearchResult`4.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{`2},System.Func{`3,System.Int32,System.Threading.Tasks.Task{`0}},`3)">
+        <member name="M:NetStone.Model.PaginatedSearchResult`4.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{`2},System.Func{`3,System.Int32,System.Threading.Tasks.Task{`0}},`3)">
             <inheritdoc />
         </member>
         <member name="T:NetStone.Model.PaginatedResult`4">
@@ -2103,7 +2103,7 @@
             Definition for the paginated type
             </summary>
         </member>
-        <member name="M:NetStone.Model.PaginatedResult`4.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{`2},System.Func{`3,System.Int32,System.Threading.Tasks.Task{`0}},`3)">
+        <member name="M:NetStone.Model.PaginatedResult`4.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{`2},System.Func{`3,System.Int32,System.Threading.Tasks.Task{`0}},`3)">
             <summary>
             
             </summary>
@@ -2146,7 +2146,7 @@
             The HTML document's root node.
             </summary>
         </member>
-        <member name="M:NetStone.Model.LodestoneParseable.#ctor(HtmlAgilityPack.HtmlNode)">
+        <member name="M:NetStone.Model.LodestoneParseable.#ctor(AngleSharp.Dom.IElement)">
             <summary>
             Constructs an instance of parseable data for given node
             </summary>
@@ -2154,14 +2154,14 @@
         </member>
         <member name="M:NetStone.Model.LodestoneParseable.QueryNode(NetStone.Definitions.DefinitionsPack)">
             <summary>
-            Query a <see cref="T:HtmlAgilityPack.HtmlNode"/> via pack selector.
+            Query a <see cref="T:AngleSharp.Dom.Node"/> via pack selector.
             </summary>
             <param name="pack">Definition of the node.</param>
             <returns>The needed node.</returns>
         </member>
         <member name="M:NetStone.Model.LodestoneParseable.QueryChildNodes(NetStone.Definitions.DefinitionsPack)">
             <summary>
-            Query all ChildNodes of a <see cref="T:HtmlAgilityPack.HtmlNode"/> via pack selector.
+            Query all ChildNodes of a <see cref="T:AngleSharp.Dom.Node"/> via pack selector.
             Removes unneeded "#text" nodes.
             </summary>
             <param name="pack">Definition of the node.</param>
@@ -2245,7 +2245,7 @@
             Models data for one Achievement this character earned
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Achievement.CharacterAchievementEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterAchievementEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Achievement.CharacterAchievementEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.CharacterAchievementEntryDefinition)">
             <summary>
             Create instance of achievement entry fpr given node
             </summary>
@@ -2280,7 +2280,7 @@
             Holds information about a characters unlocked achievements
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Achievement.CharacterAchievementPage.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterAchievementDefinition,System.String)">
+        <member name="M:NetStone.Model.Parseables.Character.Achievement.CharacterAchievementPage.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.CharacterAchievementDefinition,System.String)">
             <summary>
             Creates a new instance retrieving information about a characters unlocked achievements
             </summary>
@@ -2312,7 +2312,7 @@
             Provides information about a characters attributes
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.CharacterAttributes.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterAttributesDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.CharacterAttributes.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.CharacterAttributesDefinition)">
             <summary>
             Creates an instance that provides Attributes for given node
             </summary>
@@ -2451,7 +2451,7 @@
             Information about all classes for a character
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.ClassJob.CharacterClassJob.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterClassJobDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.ClassJob.CharacterClassJob.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.CharacterClassJobDefinition)">
             <summary>
             Creates ClassJobs data for the character represented by the Lodestone page
             </summary>
@@ -2643,7 +2643,7 @@
             Entry for Bozja Field Operation of a character
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.ClassJob.ClassJobBozja.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ClassJobBozjaDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.ClassJob.ClassJobBozja.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.ClassJobBozjaDefinition)">
             <summary>
             Constructs a new class entry
             </summary>
@@ -2691,7 +2691,7 @@
             Entry for one class/job of a character
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.ClassJob.ClassJobEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ClassJobEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.ClassJob.ClassJobEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.ClassJobEntryDefinition)">
             <summary>
             Constructs a new class entry
             </summary>
@@ -2759,7 +2759,7 @@
             Entry for Eureka Field Operation of a character
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.ClassJob.ClassJobEureka.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ClassJobEurekaDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.ClassJob.ClassJobEureka.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.ClassJobEurekaDefinition)">
             <summary>
             Constructs a new class entry
             </summary>
@@ -2817,7 +2817,7 @@
             Models a collection of collectables for characters
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectable.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ICharacterCollectableDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectable.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.ICharacterCollectableDefinition)">
             <summary>
             Constructs a collectable collection
             </summary>
@@ -2834,7 +2834,7 @@
             Entry for collectable collection
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectableEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ICharacterCollectableDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Collectable.CharacterCollectableEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.ICharacterCollectableDefinition)">
             <summary>
             Constructs one collectable entry
             </summary>
@@ -2857,7 +2857,7 @@
             Models a Free Company entry on the character profile
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.FreeCompanySocialGroup.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ICharacterSocialGroupDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.FreeCompanySocialGroup.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.ICharacterSocialGroupDefinition)">
             <summary>
             Constructs FC entry for profile page
             </summary>
@@ -2876,7 +2876,7 @@
             Container class holding information about a character's equipped gear.
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Gear.CharacterGear.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterGearDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Gear.CharacterGear.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.CharacterGearDefinition)">
             <summary>
             Constructs parser for character gear
             </summary>
@@ -2959,7 +2959,7 @@
             Represents data about a character's facewear
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Gear.FacewearEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.FacewearEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Gear.FacewearEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.FacewearEntryDefinition)">
             <inheritdoc />
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.FacewearEntry.ItemName">
@@ -3003,7 +3003,7 @@
             Character representing the high quality symbol
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Gear.GearEntry.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.GearEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Gear.GearEntry.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.GearEntryDefinition)">
             <summary>
             Construct a new gear entry
             </summary>
@@ -3123,7 +3123,7 @@
             Represents data about a character's soul crystal
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.Gear.SoulcrystalEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.SoulcrystalEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Character.Gear.SoulcrystalEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.SoulcrystalEntryDefinition)">
             <inheritdoc />
         </member>
         <member name="P:NetStone.Model.Parseables.Character.Gear.SoulcrystalEntry.ItemName">
@@ -3157,7 +3157,7 @@
             Unicode character used to represent male characters
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Character.LodestoneCharacter.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.DefinitionsContainer,System.String)">
+        <member name="M:NetStone.Model.Parseables.Character.LodestoneCharacter.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.DefinitionsContainer,System.String)">
             <summary>
             Container class for a parseable character page.
             </summary>
@@ -3311,7 +3311,7 @@
             Container class holding information about a cross world linkshell and it's members.
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.CWLS.LodestoneCrossworldLinkshell.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.DefinitionsContainer,System.String)">
+        <member name="M:NetStone.Model.Parseables.CWLS.LodestoneCrossworldLinkshell.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.DefinitionsContainer,System.String)">
             <summary>
             Container class for a parseable corss world linkshell page.
             </summary>
@@ -3343,7 +3343,7 @@
             Container class holding information about a cross-world linkshell member.
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.CWLS.Members.CrossworldLinkshellMemberEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.CWLS.CrossworldLinkshellMemberEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.CWLS.Members.CrossworldLinkshellMemberEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.CWLS.CrossworldLinkshellMemberEntryDefinition)">
             <summary>
             Create instance of member entry for a given node
             </summary>
@@ -3395,7 +3395,7 @@
             Information about the Free CCompany's estate
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyEstate.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.FreeCompany.EstateDefinition)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyEstate.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.FreeCompany.EstateDefinition)">
             <inheritdoc />
         </member>
         <member name="P:NetStone.Model.Parseables.FreeCompany.FreeCompanyEstate.Name">
@@ -3421,7 +3421,7 @@
             Infomation about the content this FC focuses on
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyFocus.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusDefinition)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyFocus.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusDefinition)">
             <inheritdoc />
         </member>
         <member name="P:NetStone.Model.Parseables.FreeCompany.FreeCompanyFocus.HasFocus">
@@ -3482,7 +3482,7 @@
             Data about one type of Free Company focus
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyFocusEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyFocusEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.FreeCompany.FreeCompanyFocusEntryDefinition)">
             <summary>
             Construct instance to parse focus
             </summary>
@@ -3509,7 +3509,7 @@
             Information on free companies
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyReputation.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.FreeCompany.FreeCompanyReputationDefinition)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyReputation.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.FreeCompany.FreeCompanyReputationDefinition)">
             <summary>
             Creates Free Company reputation information
             </summary>
@@ -3549,7 +3549,7 @@
             Models reputation of a Free Company with on Grand Company
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyReputationEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.FreeCompany.FreeCompanyReputationEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.FreeCompanyReputationEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.FreeCompany.FreeCompanyReputationEntryDefinition)">
             <summary>
             Constructs FC reputation with on GC
             </summary>
@@ -3576,7 +3576,7 @@
             Provides information of a Free Company
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.LodestoneFreeCompany.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.DefinitionsContainer,System.String)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.LodestoneFreeCompany.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.DefinitionsContainer,System.String)">
             <summary>
             Constructs Free Company information parser
             </summary>
@@ -3681,7 +3681,7 @@
             Information about a Free Company's members
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembers.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.FreeCompany.FreeCompanyMembersEntryDefinition},System.String)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembers.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.FreeCompany.FreeCompanyMembersEntryDefinition},System.String)">
             <summary>
             Constructs member list
             </summary>
@@ -3703,7 +3703,7 @@
             Models one entry for the Free Company member list
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembersEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.FreeCompany.FreeCompanyMembersEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembersEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.FreeCompany.FreeCompanyMembersEntryDefinition)">
             
         </member>
         <member name="P:NetStone.Model.Parseables.FreeCompany.Members.FreeCompanyMembersEntry.Name">
@@ -3756,7 +3756,7 @@
             Container class holding information about a social group's icon.
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.IconLayers.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.IconLayersDefinition)">
+        <member name="M:NetStone.Model.Parseables.IconLayers.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.IconLayersDefinition)">
             <inheritdoc />
         </member>
         <member name="P:NetStone.Model.Parseables.IconLayers.TopLayer">
@@ -3779,7 +3779,7 @@
             Container class holding information about a linkshell and it's members.
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Linkshell.LodestoneLinkshell.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.DefinitionsContainer,System.String)">
+        <member name="M:NetStone.Model.Parseables.Linkshell.LodestoneLinkshell.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.DefinitionsContainer,System.String)">
             <summary>
             Container class for a parseable linkshell page.
             </summary>
@@ -3806,7 +3806,7 @@
             Container class holding information about a  linkshell member.
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Linkshell.Members.LinkshellMemberEntry.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Linkshell.LinkshellMemberEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Linkshell.Members.LinkshellMemberEntry.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Linkshell.LinkshellMemberEntryDefinition)">
             <summary>
             Create instance of member entry for a given node
             </summary>
@@ -3858,7 +3858,7 @@
             Models one entry in the character search results list
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.Character.CharacterSearchEntry.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.CharacterSearchEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Search.Character.CharacterSearchEntry.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.CharacterSearchEntryDefinition)">
             
         </member>
         <member name="P:NetStone.Model.Parseables.Search.Character.CharacterSearchEntry.Name">
@@ -3885,7 +3885,7 @@
             Models character search results
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.Character.CharacterSearchPage.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.Character.CharacterSearchEntryDefinition},NetStone.Search.Character.CharacterSearchQuery)">
+        <member name="M:NetStone.Model.Parseables.Search.Character.CharacterSearchPage.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.Character.CharacterSearchEntryDefinition},NetStone.Search.Character.CharacterSearchQuery)">
             <summary>
             Constructs character search results
             </summary>
@@ -3907,7 +3907,7 @@
             Models one entry in the cwls search results list
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.CWLS.CrossworldLinkshellSearchEntry.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.CWLS.CrossworldLinkshellSearchEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Search.CWLS.CrossworldLinkshellSearchEntry.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.CWLS.CrossworldLinkshellSearchEntryDefinition)">
             
         </member>
         <member name="P:NetStone.Model.Parseables.Search.CWLS.CrossworldLinkshellSearchEntry.Name">
@@ -3944,7 +3944,7 @@
             Models cross world link shell search results
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.CWLS.CrossworldLinkshellSearchPage.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.CWLS.CrossworldLinkshellSearchEntryDefinition},NetStone.Search.Linkshell.CrossworldLinkshellSearchQuery)">
+        <member name="M:NetStone.Model.Parseables.Search.CWLS.CrossworldLinkshellSearchPage.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.CWLS.CrossworldLinkshellSearchEntryDefinition},NetStone.Search.Linkshell.CrossworldLinkshellSearchQuery)">
             <summary>
             Constructs character search results
             </summary>
@@ -3966,7 +3966,7 @@
             Models on entry of the free company search results
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.FreeCompany.FreeCompanySearchEntry.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.FreeCompany.FreeCompanySearchEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Search.FreeCompany.FreeCompanySearchEntry.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.FreeCompany.FreeCompanySearchEntryDefinition)">
             
         </member>
         <member name="P:NetStone.Model.Parseables.Search.FreeCompany.FreeCompanySearchEntry.Name">
@@ -4043,7 +4043,7 @@
             Models Free Company search results
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.FreeCompany.FreeCompanySearchPage.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.FreeCompany.FreeCompanySearchEntryDefinition},NetStone.Search.FreeCompany.FreeCompanySearchQuery)">
+        <member name="M:NetStone.Model.Parseables.Search.FreeCompany.FreeCompanySearchPage.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.FreeCompany.FreeCompanySearchEntryDefinition},NetStone.Search.FreeCompany.FreeCompanySearchQuery)">
             <summary>
             Constructs Free Company Search results
             </summary>
@@ -4065,7 +4065,7 @@
             Models one entry in the linkshell search results list
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.Linkshell.LinkshellSearchEntry.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Linkshell.LinkshellSearchEntryDefinition)">
+        <member name="M:NetStone.Model.Parseables.Search.Linkshell.LinkshellSearchEntry.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.Linkshell.LinkshellSearchEntryDefinition)">
             
         </member>
         <member name="P:NetStone.Model.Parseables.Search.Linkshell.LinkshellSearchEntry.Name">
@@ -4102,7 +4102,7 @@
             Models link shell search results
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.Search.Linkshell.LinkshellSearchPage.#ctor(NetStone.LodestoneClient,HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.Linkshell.LinkshellSearchEntryDefinition},NetStone.Search.Linkshell.LinkshellSearchQuery)">
+        <member name="M:NetStone.Model.Parseables.Search.Linkshell.LinkshellSearchPage.#ctor(NetStone.LodestoneClient,AngleSharp.Dom.IElement,NetStone.Definitions.Model.PagedDefinition{NetStone.Definitions.Model.Linkshell.LinkshellSearchEntryDefinition},NetStone.Search.Linkshell.LinkshellSearchQuery)">
             <summary>
             Constructs character search results
             </summary>
@@ -4124,7 +4124,7 @@
             Models a group of players/characters
             </summary>
         </member>
-        <member name="M:NetStone.Model.Parseables.SocialGroup.#ctor(HtmlAgilityPack.HtmlNode,NetStone.Definitions.Model.Character.ICharacterSocialGroupDefinition)">
+        <member name="M:NetStone.Model.Parseables.SocialGroup.#ctor(AngleSharp.Dom.IElement,NetStone.Definitions.Model.Character.ICharacterSocialGroupDefinition)">
             <inheritdoc />
         </member>
         <member name="P:NetStone.Model.Parseables.SocialGroup.Exists">

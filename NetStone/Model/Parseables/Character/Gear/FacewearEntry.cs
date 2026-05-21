@@ -1,5 +1,5 @@
 using System;
-using HtmlAgilityPack;
+using AngleSharp.Dom;
 using NetStone.Definitions.Model.Character;
 
 namespace NetStone.Model.Parseables.Character.Gear;
@@ -12,7 +12,7 @@ public class FacewearEntry : LodestoneParseable, IOptionalParseable<FacewearEntr
     private readonly FacewearEntryDefinition _definition;
 
     ///<inheritdoc />
-    public FacewearEntry(HtmlNode rootNode, FacewearEntryDefinition definition) : base(rootNode)
+    public FacewearEntry(IElement rootNode, FacewearEntryDefinition definition) : base(rootNode)
     {
         this._definition = definition;
     }

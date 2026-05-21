@@ -1,4 +1,4 @@
-﻿using HtmlAgilityPack;
+﻿using AngleSharp.Dom;
 using NetStone.Definitions.Model.Character;
 
 namespace NetStone.Model.Parseables.Character.Collectable;
@@ -15,7 +15,7 @@ public class CharacterCollectableEntry : LodestoneParseable
     /// </summary>
     /// <param name="rootNode">Root node for entry</param>
     /// <param name="definition">Parse definition</param>
-    public CharacterCollectableEntry(HtmlNode rootNode, ICharacterCollectableDefinition definition) : base(rootNode)
+    public CharacterCollectableEntry(IElement rootNode, ICharacterCollectableDefinition definition) : base(rootNode)
     {
         this._definition = definition;
     }
