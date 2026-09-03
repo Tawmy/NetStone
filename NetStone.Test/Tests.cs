@@ -441,7 +441,7 @@ public class Tests
                 case ClassJob.Culinarian:
                     Assert.IsTrue(activeJob.IsSpecialized);
                     break;
-                case ClassJob.Viper or ClassJob.Pictomancer:
+                case ClassJob.Viper or ClassJob.Pictomancer or ClassJob.Beastmaster:
                     Assert.IsFalse(activeJob.IsUnlocked, $"{job}");
                     break;
                 case ClassJob.WhiteMage:
